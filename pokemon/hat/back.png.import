@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WizardHat0006.png-83bac681fbf952522296236f69eb079d.stex"
+path="res://.import/back.png-29f724ca601b8eee0e4a0ce01bb1b2e5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pokemon/WizardHat0006.png"
-dest_files=[ "res://.import/WizardHat0006.png-83bac681fbf952522296236f69eb079d.stex" ]
+source_file="res://pokemon/hat/back.png"
+dest_files=[ "res://.import/back.png-29f724ca601b8eee0e4a0ce01bb1b2e5.stex" ]
 
 [params]
 

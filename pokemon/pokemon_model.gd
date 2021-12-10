@@ -16,6 +16,7 @@ export(int) var attack:int = 1
 export(int) var defense:int = 1
 export(int) var speed:int = 1
 export(Array, Resource) var moves
+export(PackedScene) var battle_graphics
 
 func prop_change_(property:String, from, to) -> void:
 	emit_signal(property + "_changed", from, to)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://widgets/menu_button.gd" type="Script" id=1]
-[ext_resource path="res://sprites/arrow.png" type="Texture" id=2]
+[ext_resource path="res://widgets/sprites/arrow.png" type="Texture" id=2]
 
 [node name="HBoxContainer" type="HBoxContainer"]
 margin_right = 47.0

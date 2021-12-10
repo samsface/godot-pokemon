@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/l.png-985d8fc5a0926dc0c38f06670e4a6d54.stex"
+path="res://.import/front.png-2fa2b3f736fcbf49846a67e545d669e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/l.png"
-dest_files=[ "res://.import/l.png-985d8fc5a0926dc0c38f06670e4a6d54.stex" ]
+source_file="res://pokemon/beer/front.png"
+dest_files=[ "res://.import/front.png-2fa2b3f736fcbf49846a67e545d669e1.stex" ]
 
 [params]
 

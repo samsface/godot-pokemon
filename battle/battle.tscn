@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://pokemon/beer0004.png" type="Texture" id=1]
-[ext_resource path="res://pokemon/WizardHat0006.png" type="Texture" id=2]
+[ext_resource path="res://trainer/red.tres" type="Resource" id=1]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://widgets/pokemon_info_player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ref2.png" type="Texture" id=5]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=6]
 [ext_resource path="res://widgets/menu_button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://battle/battle.gd" type="Script" id=8]
-[ext_resource path="res://sprites/char02_0000.png" type="Texture" id=9]
-[ext_resource path="res://sprites/char04_0006.png" type="Texture" id=10]
-[ext_resource path="res://sprites/panel.png" type="Texture" id=11]
+[ext_resource path="res://widgets/sprites/char02_0000.png" type="Texture" id=9]
+[ext_resource path="res://widgets/sprites/char04_0006.png" type="Texture" id=10]
+[ext_resource path="res://widgets/sprites/panel.png" type="Texture" id=11]
 [ext_resource path="res://widgets/menu.gd" type="Script" id=12]
 [ext_resource path="res://widgets/pokemon_info_enemy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://trainer/blue.tres" type="Resource" id=14]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=17]
 [ext_resource path="res://battle/pokemon_menu.tscn" type="PackedScene" id=18]
 
@@ -37,6 +37,8 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+player = ExtResource( 14 )
+enemy = ExtResource( 1 )
 
 [node name="tween" type="Tween" parent="."]
 script = ExtResource( 17 )
@@ -44,11 +46,11 @@ script = ExtResource( 17 )
 [node name="enemy_position" type="Position2D" parent="."]
 position = Vector2( 122.981, 30.6927 )
 
-[node name="pokemon" type="Sprite" parent="enemy_position"]
+[node name="pokemon" type="Position2D" parent="enemy_position"]
 visible = false
-position = Vector2( -0.529724, -6.35678 )
-scale = Vector2( 0.486769, 0.486769 )
-texture = ExtResource( 1 )
+
+[node name="pokemon" parent="enemy_position/pokemon" instance_placeholder="res://pokemon/beer/beer_battle_graphic.tscn"]
+position = Vector2( -10.981, -23.6927 )
 
 [node name="enemy" type="Sprite" parent="enemy_position"]
 scale = Vector2( 0.659458, 0.659458 )
@@ -57,16 +59,19 @@ texture = ExtResource( 9 )
 [node name="player_position" type="Position2D" parent="."]
 position = Vector2( 32.3745, 76.942 )
 
+[node name="pokemon" type="Position2D" parent="player_position"]
+visible = false
+position = Vector2( 3.43981, 1.87614 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="pokemon" parent="player_position/pokemon" instance_placeholder="res://pokemon/hat/hat_battle_graphic.tscn"]
+position = Vector2( -19.7347, -42.5973 )
+scale = Vector2( 1.42857, 1.42857 )
+
 [node name="player" type="Sprite" parent="player_position"]
 position = Vector2( 3.43981, 1.87614 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
-
-[node name="pokemon" type="Sprite" parent="player_position"]
-visible = false
-position = Vector2( -7.1264, -3.9267 )
-scale = Vector2( 0.509615, 0.509615 )
-texture = ExtResource( 2 )
 
 [node name="rival_stats" parent="." instance=ExtResource( 13 )]
 visible = false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/panel.png-806f4bab8e799332a9707526423c1dfb.stex"
+path="res://.import/front.png-e70fe95b47278049e557e5d0c3070f18.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/panel.png"
-dest_files=[ "res://.import/panel.png-806f4bab8e799332a9707526423c1dfb.stex" ]
+source_file="res://pokemon/hat/front.png"
+dest_files=[ "res://.import/front.png-e70fe95b47278049e557e5d0c3070f18.stex" ]
 
 [params]
 

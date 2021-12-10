@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
-[ext_resource path="res://sprites/line (copy 1).png" type="Texture" id=2]
-[ext_resource path="res://sprites/l.png" type="Texture" id=3]
+[ext_resource path="res://widgets/sprites/line (copy 1).png" type="Texture" id=2]
+[ext_resource path="res://widgets/sprites/l.png" type="Texture" id=3]
 [ext_resource path="res://widgets/pokemon_info.gd" type="Script" id=4]
-[ext_resource path="res://sprites/hp.png" type="Texture" id=5]
-[ext_resource path="res://sprites/progress.png" type="Texture" id=6]
+[ext_resource path="res://widgets/sprites/hp.png" type="Texture" id=5]
+[ext_resource path="res://widgets/sprites/progress.png" type="Texture" id=6]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=7]
 
 [node name="rival_stats" type="Node2D"]

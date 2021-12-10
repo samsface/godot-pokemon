@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beer0004.png-da06d9436b252ec4248e03803748366c.stex"
+path="res://.import/char02_0000.png-e742e5b73031b7873bdf92b5dc8221f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pokemon/beer0004.png"
-dest_files=[ "res://.import/beer0004.png-da06d9436b252ec4248e03803748366c.stex" ]
+source_file="res://widgets/sprites/char02_0000.png"
+dest_files=[ "res://.import/char02_0000.png-e742e5b73031b7873bdf92b5dc8221f9.stex" ]
 
 [params]
 

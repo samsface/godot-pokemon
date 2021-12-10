@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://battle/pokemon_menu.gd" type="Script" id=1]
-[ext_resource path="res://pokemon/beer.tres" type="Resource" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=6]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=17]
@@ -15,7 +14,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-pokemon = [ ExtResource( 2 ) ]
 
 [node name="col_1" type="VBoxContainer" parent="."]
 margin_right = 160.0

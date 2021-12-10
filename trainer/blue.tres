@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
+[ext_resource path="res://pokemon/beer/beer.tres" type="Resource" id=2]
+[ext_resource path="res://pokemon/hat/hat.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "Blue"
+pokemon = [ ExtResource( 4 ), ExtResource( 2 ) ]
+items = [  ]
