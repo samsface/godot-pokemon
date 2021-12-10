@@ -53,11 +53,7 @@ func set_player_pokemon_(pokemon) -> void:
 	player_pokemon_graphic_.show_back()
 	
 	player_pokemon_ = pokemon
-	player_stats_.text = player_pokemon_.name
-	player_stats_.level = player_pokemon_.level
-	player_stats_.hp = player_pokemon_.hp
-	player_stats_.max_hp = player_pokemon_.max_hp
-	
+	player_stats_.set_from_pokemon(pokemon)
 	fight_.clear()
 	
 	for move in player_pokemon_.moves:
@@ -71,10 +67,7 @@ func set_enemy_pokemon_(pokemon) -> void:
 	enemy_pokemon_graphic_.show_front()
 	
 	enemy_pokemon_ = pokemon
-	rival_stats_.text = enemy_pokemon_.name
-	rival_stats_.level = enemy_pokemon_.level
-	rival_stats_.hp = enemy_pokemon_.hp
-	rival_stats_.max_hp = enemy_pokemon_.max_hp
+	rival_stats_.set_from_pokemon(pokemon)
 
 func push_menu_(menu) -> void:
 	if not menu_stack_.empty():
@@ -262,6 +255,7 @@ func game_() -> void:
 			yield(info_box_.animate_text("%s fainted." % player_pokemon_.name), "animate_text_done")
 			yield(player_pokemon_graphic_.faint(), "done")
 			push_menu_(pokemon_)
+			pokemon_.info.animate_text("What do pick?")
 			info_box_.clear_text()
 			player_move = yield(self, "player_chose_move")
 			apply_player_pokemon_(player_move.pokemon)

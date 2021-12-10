@@ -57,7 +57,18 @@ func select_(idx, force := false) -> void:
 	if idx_ == idx and not force:
 		return
 
-	get_node(menu_items[idx_]).selected = false
+	if get_node(menu_items[idx]).off:
+		for i in menu_items.size():
+			var ii = (idx + i + 1) % menu_items.size()
+			if not get_node(menu_items[ii]).off:
+				select_(ii, force)
+				return
+
+		return
+
+	if menu_items.size() > idx_:
+		get_node(menu_items[idx_]).selected = false
+
 	idx_ = idx
 	get_node(menu_items[idx_]).selected = true
 

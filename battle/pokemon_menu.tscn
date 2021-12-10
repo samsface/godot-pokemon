@@ -26,3 +26,5 @@ __meta__ = {
 script = ExtResource( 17 )
 
 [node name="info" parent="." instance=ExtResource( 6 )]
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
