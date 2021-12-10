@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://moves/move_model.gd" type="Script" id=1]
+[ext_resource path="res://moves/effects/thunderbolt.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "thunderbolt"
+power = 1
+fx = ExtResource( 2 )

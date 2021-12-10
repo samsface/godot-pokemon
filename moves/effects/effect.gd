@@ -1,0 +1,23 @@
+extends Node2D
+
+signal done
+
+export(Vector2) var target_position
+
+var delta_sum_ := 0.0
+
+func _ready():
+	$circle.position = target_position
+	$tween.interpolate_property(Cam, "offset", null, Vector2( 4, 0), 0.1, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	$tween.interpolate_property(Cam, "offset", null, Vector2(-4, 0), 0.1, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT, 0.1)
+	$tween.interpolate_property(Cam, "offset", null, Vector2( 0, 0), 0.1, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT, 0.2)
+	$tween.start()
+
+func _process(delta) -> void:
+	delta_sum_ += delta
+
+	$circle.visible = sin(delta_sum_ * 20.0) > 0.0
+	$invert.value = sin(delta_sum_ * 20.0) > 0.9
+
+	if delta_sum_ > 1.0:
+		emit_signal("done")

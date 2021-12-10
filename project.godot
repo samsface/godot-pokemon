@@ -1,0 +1,94 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "ItemModel",
+"language": "GDScript",
+"path": "res://items/item_model.gd"
+}, {
+"base": "PanelContainer",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://widgets/menu.gd"
+}, {
+"base": "Resource",
+"class": "MoveModel",
+"language": "GDScript",
+"path": "res://moves/move_model.gd"
+}, {
+"base": "Resource",
+"class": "PokemonModel",
+"language": "GDScript",
+"path": "res://pokemon/pokemon_model.gd"
+}, {
+"base": "Reference",
+"class": "TempTimer",
+"language": "GDScript",
+"path": "res://utils/temp_timer.gd"
+} ]
+_global_script_class_icons={
+"ItemModel": "",
+"Menu": "",
+"MoveModel": "",
+"PokemonModel": "",
+"TempTimer": ""
+}
+
+[application]
+
+config/name="jam"
+run/main_scene="res://battle/battle.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Cam="*res://camera.tscn"
+
+[display]
+
+window/size/width=160
+window/size/height=144
+window/size/test_width=640
+window/size/test_height=576
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": true,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
