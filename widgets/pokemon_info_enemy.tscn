@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://sprites/line (copy 1).png" type="Texture" id=2]
+[ext_resource path="res://sprites/l.png" type="Texture" id=3]
+[ext_resource path="res://widgets/pokemon_info.gd" type="Script" id=4]
+[ext_resource path="res://sprites/hp.png" type="Texture" id=5]
+[ext_resource path="res://sprites/progress.png" type="Texture" id=6]
+[ext_resource path="res://widgets/tween_ex.gd" type="Script" id=7]
+
+[node name="rival_stats" type="Node2D"]
+position = Vector2( -63.7363, -55.7418 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tween" type="Tween" parent="."]
+script = ExtResource( 7 )
+
+[node name="level_label" type="Sprite" parent="."]
+position = Vector2( 101.62, 68.3017 )
+texture = ExtResource( 3 )
+
+[node name="name" type="Label" parent="."]
+margin_left = 72.7363
+margin_top = 51.7418
+margin_right = 232.736
+margin_bottom = 77.7418
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "BULBASAUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level" type="Label" parent="."]
+margin_left = 103.736
+margin_top = 59.7418
+margin_right = 263.736
+margin_bottom = 85.7418
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border" type="Sprite" parent="."]
+position = Vector2( 113.104, 74.1594 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hp_bar" type="Node2D" parent="."]
+position = Vector2( 78.7363, 76.7418 )
+
+[node name="hp" type="Label" parent="hp_bar"]
+visible = false
+margin_left = 15.0
+margin_top = 1.0
+margin_right = 72.0
+margin_bottom = 27.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "20/ 20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Sprite" parent="hp_bar"]
+position = Vector2( 8, -1 )
+texture = ExtResource( 5 )
+
+[node name="bar" type="Sprite" parent="hp_bar"]
+position = Vector2( 41, -1 )
+texture = ExtResource( 6 )
+
+[node name="line" type="Line2D" parent="hp_bar/bar"]
+position = Vector2( -24, 0 )
+points = PoolVector2Array( 0, 0, 48, 0 )
+width = 2.0
+default_color = Color( 0.133333, 0.494118, 0.192157, 1 )

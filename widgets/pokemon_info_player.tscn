@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://sprites/l.png" type="Texture" id=2]
+[ext_resource path="res://widgets/pokemon_info.gd" type="Script" id=3]
+[ext_resource path="res://sprites/hp.png" type="Texture" id=4]
+[ext_resource path="res://sprites/progress.png" type="Texture" id=5]
+[ext_resource path="res://sprites/line.png" type="Texture" id=6]
+[ext_resource path="res://widgets/tween_ex.gd" type="Script" id=7]
+
+[node name="player_stats" type="Node2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tween" type="Tween" parent="."]
+script = ExtResource( 7 )
+
+[node name="level_label" type="Sprite" parent="."]
+position = Vector2( 37.761, -3.4847 )
+texture = ExtResource( 2 )
+
+[node name="name" type="Label" parent="."]
+margin_left = -0.0457001
+margin_top = -20.0
+margin_right = 159.954
+margin_bottom = 6.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "BULBASAUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp_bar" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hp" type="Label" parent="hp_bar"]
+margin_left = 16.0
+margin_top = 4.0
+margin_right = 73.0
+margin_bottom = 30.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "20/ 20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Sprite" parent="hp_bar"]
+position = Vector2( 6, 4 )
+texture = ExtResource( 4 )
+
+[node name="bar" type="Sprite" parent="hp_bar"]
+position = Vector2( 40, 4 )
+texture = ExtResource( 5 )
+
+[node name="line" type="Line2D" parent="hp_bar/bar"]
+position = Vector2( -24, 0 )
+points = PoolVector2Array( 0, 0, 48, 0 )
+width = 2.0
+default_color = Color( 0.133333, 0.494118, 0.192157, 1 )
+
+[node name="level" type="Label" parent="."]
+margin_left = 39.855
+margin_top = -11.6245
+margin_right = 199.855
+margin_bottom = 14.3755
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border" type="Sprite" parent="."]
+position = Vector2( 30.5, 10.4246 )
+texture = ExtResource( 6 )

@@ -21,3 +21,8 @@ func _process(delta) -> void:
 
 	if delta_sum_ > 1.0:
 		emit_signal("done")
+
+func _unhandled_input(event) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		get_tree().set_input_as_handled()
+		emit_signal("done")

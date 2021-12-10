@@ -3,6 +3,8 @@ extends Node
 signal player_chose_move
 signal player_move_applied
 signal enemy_move_applied
+signal enemy_send_out_pokemon_done
+signal player_send_out_pokemon_done
 
 var menu_stack_ := []
 
@@ -15,6 +17,10 @@ onready var info_box_ = find_node("info")
 onready var action_menu_ = find_node("action_menu")
 onready var items_ = find_node("items")
 onready var fight_ = find_node("fight_menu")
+onready var pokemon_ = find_node("pokemon_list")
+
+onready var player_ = find_node("player")
+onready var enemy_ = find_node("enemy")
 
 func _ready():
 	rival_pokemon = preload("res://pokemon/beer.tres")
@@ -32,17 +38,19 @@ func _ready():
 	action_menu_.set_process_input(false)
 	action_menu_.connect("fight", self, "push_menu_", [find_node("fight_menu")])
 	action_menu_.connect("item", self, "push_menu_", [items_])
+	action_menu_.connect("pokemon", self, "push_menu_", [pokemon_])
 	
-	fight_.connect("cancel", self, "pop_menu_")
 	fight_.connect("activated", self, "_on_attack_activated")
 	fight_.set_process_input(false)
 	fight_.clear()
 	
 	for move in player_pokemon.moves:
-		fight_.add_menu_item(move.name)
+		fight_.add_text_menu_item(move.name)
 
+	items_.connect("activated", self, "_on_item_activated")
 	items_.set_process_input(false)
-	items_.connect("cancel", self, "pop_menu_")
+
+	pokemon_.set_process_input(false)
 
 	game_()
 
@@ -50,7 +58,10 @@ func push_menu_(menu) -> void:
 	if not menu_stack_.empty():
 		menu_stack_.back().visible = false
 		menu_stack_.back().set_process_input(false)
-	
+
+	if menu_stack_.size() > 0:
+		menu.connect("cancel", self, "pop_menu_", [], CONNECT_ONESHOT)
+
 	menu_stack_.push_back(menu)
 	menu.visible = true
 	menu.set_process_input(true)
@@ -68,6 +79,9 @@ func pop_menu_() -> void:
 	
 	menu_stack_.back().set_process_input(true)
 	menu_stack_.back().visible = true
+
+func _on_item_activated(item_idx:int) -> void:
+	pop_menu_()
 
 func _on_attack_activated(attack_idx:int) -> void:
 	pop_menu_()
@@ -110,9 +124,8 @@ func apply_player_move_(move) -> void:
 	if critical > 1.0:
 		info_box_.animate_text("Critical hit!")
 		yield(info_box_, "animate_text_done")
-		yield(TempTimer.timeouts(self, 1.0), "timeout")
 
-	info_box_.animate_text("")
+	info_box_.clear_text()
 	emit_signal("player_move_applied")
 
 func apply_enemy_move_(move) -> void:
@@ -138,17 +151,53 @@ func apply_enemy_move_(move) -> void:
 	if critical > 1.0:
 		info_box_.animate_text("Critical hit!")
 		yield(info_box_, "animate_text_done")
-		yield(TempTimer.timeouts(self, 0.5), "timeout")
 
-	info_box_.animate_text("")
+	info_box_.clear_text()
 	emit_signal("enemy_move_applied")
 
+func enemy_send_out_pokemon_() -> void:
+	$tween.interpolate_property(enemy_, "position:x", null, 160, 0.2)
+	yield($tween.block(), "done")
+
+	yield(info_box_.animate_text("Dude send out beer!"), "animate_text_done")
+	$enemy_position/pokemon.visible = true
+	rival_stats_.visible = true
+	info_box_.clear_text()
+	emit_signal("enemy_send_out_pokemon_done")
+
+func player_send_out_pokemon_() -> void:
+	$tween.interpolate_property(player_, "position:x", null, -100, 0.2)
+	yield($tween.block(), "done")
+
+	yield(info_box_.animate_text("Go Hat!"), "animate_text_done")
+	$player_position/pokemon.visible = true
+	player_stats_.visible = true
+	info_box_.clear_text()
+	emit_signal("player_send_out_pokemon_done")
+
 func game_() -> void:
+	$tween.interpolate_property(player_, "position:x", 144, player_.position.x, 1.0)
+	$tween.interpolate_property(enemy_, "position:x", -144, enemy_.position.x, 1.0)
+	yield($tween.block(), "done")
+
+	yield(info_box_.animate_text("Dude wants to fight!"), "animate_text_done")
+
+	enemy_send_out_pokemon_()
+	yield(self, "enemy_send_out_pokemon_done")
+	
+	player_send_out_pokemon_()
+	yield(self, "player_send_out_pokemon_done")
+
 	while true:
 		var player_move = yield(get_next_player_move_(), "player_chose_move")
 		var enemy_move = get_next_enemy_move_()
 		
 		apply_player_move_(player_move)
 		yield(self, "player_move_applied")
+		
+		if rival_pokemon.hp <= 0:
+			yield(info_box_.animate_text("Enemy fainted."), "animate_text_done")
+			return
+
 		apply_enemy_move_(enemy_move)
 		yield(self, "enemy_move_applied")

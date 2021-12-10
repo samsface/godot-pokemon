@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 class_name Menu
 
 signal activated
@@ -8,10 +8,13 @@ export(Array, NodePath) var menu_items
 
 var idx_ := 0
 
-func add_menu_item(text:String) -> void:
+func add_text_menu_item(text:String) -> void:
 	var menu_item := preload("res://widgets/menu_button.tscn").instance()
 	menu_item.capitalize = true
 	menu_item.text = text
+	add_menu_item(menu_item)
+
+func add_menu_item(menu_item) -> void:
 	find_node("col_1").add_child(menu_item)
 	menu_items.push_back(menu_item.get_path())
 
@@ -59,5 +62,5 @@ func select_(idx, force := false) -> void:
 	get_node(menu_items[idx_]).selected = true
 
 func activate_() -> void:
- 	emit_signal(get_node(menu_items[idx_]).name)
+	emit_signal(get_node(menu_items[idx_]).name)
 	emit_signal("activated", get_node(menu_items[idx_]).get_position_in_parent())

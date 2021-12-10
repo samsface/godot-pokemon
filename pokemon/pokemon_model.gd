@@ -33,7 +33,7 @@ func set_level(value:int) -> void:
 
 func set_hp(value:int) -> void:
 	var old := hp
-	hp = value
+	hp = max(0, value)
 	prop_change_("hp", old, value)
 
 func set_max_hp(value:int) -> void:

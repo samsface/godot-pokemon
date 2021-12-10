@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/item_model.gd"
 }, {
-"base": "PanelContainer",
+"base": "Control",
 "class": "Menu",
 "language": "GDScript",
 "path": "res://widgets/menu.gd"
@@ -29,17 +29,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://pokemon/pokemon_model.gd"
 }, {
-"base": "Reference",
-"class": "TempTimer",
+"base": "Tween",
+"class": "TweenEx",
 "language": "GDScript",
-"path": "res://utils/temp_timer.gd"
+"path": "res://widgets/tween_ex.gd"
 } ]
 _global_script_class_icons={
 "ItemModel": "",
 "Menu": "",
 "MoveModel": "",
 "PokemonModel": "",
-"TempTimer": ""
+"TweenEx": ""
 }
 
 [application]

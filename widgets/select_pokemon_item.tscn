@@ -22,6 +22,7 @@ stretch_mode = 4
 
 [node name="label" type="Label" parent="."]
 margin_left = 8.0
-margin_right = 8.0
+margin_right = 41.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "False"
