@@ -46,3 +46,7 @@ func set_xp(value:int) -> void:
 	var old := xp
 	xp = value
 	prop_change_("xp", old, value)
+
+func is_dead() -> bool:
+	return hp <= 0
+

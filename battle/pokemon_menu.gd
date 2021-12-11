@@ -19,9 +19,9 @@ func invalidate_() -> void:
 		menu_item.off = p.hp <= 0
 		add_menu_item(menu_item)
 	
-	for menu_item in menu_items:
-		if not get_node(menu_item).off:
-			get_node(menu_item).selected = true
+	for i in pokemon.size():
+		if pokemon[i].hp > 0:
+			select_(i, true)
 			break
 
 func _on_visibility_changed():

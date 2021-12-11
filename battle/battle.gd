@@ -5,27 +5,36 @@ signal player_move_applied
 signal enemy_move_applied
 signal enemy_send_out_pokemon_done
 signal player_send_out_pokemon_done
+signal action
 
 export(Resource) var player
 export(Resource) var enemy
 
-onready var player_stats_ = find_node("player_stats")
-onready var rival_stats_ = find_node("rival_stats")
 onready var info_box_ = find_node("info")
 onready var action_menu_ = find_node("action_menu")
 onready var items_ = find_node("items")
 onready var fight_ = find_node("fight_menu")
 onready var pokemon_ = find_node("pokemon_list")
-
-onready var player_ = find_node("player")
-onready var enemy_ = find_node("enemy")
+onready var yes_no_menu_ = find_node("yes_no_menu")
+onready var player_graphics_ = find_node("player")
+onready var enemy_graphics_ = find_node("enemy")
 
 var menu_stack_ := []
 
-var player_pokemon_graphic_
-var player_pokemon_
-var enemy_pokemon_graphic_
-var enemy_pokemon_
+class Action:
+	enum Type {
+		item,
+		attack,
+		swap,
+		cancel
+	}
+	
+	func _init(type:int, idx:int) -> void:
+		self.type = type
+		self.idx = idx
+
+	var type:int = Type.cancel
+	var idx := 0
 
 func _ready():
 	action_menu_.set_process_input(false)
@@ -43,31 +52,10 @@ func _ready():
 	pokemon_.set_process_input(false)
 	pokemon_.connect("activated", self, "_on_pokemon_select_activated")
 
+	yes_no_menu_.set_process_input(false)
+	yes_no_menu_.connect("activated", self, "_on_yes_no_activated")
+
 	game_()
-
-func set_player_pokemon_(pokemon) -> void:
-	if player_pokemon_graphic_:
-		player_pokemon_graphic_.queue_free()
-
-	player_pokemon_graphic_ = $player_position/pokemon/pokemon.create_instance(false, pokemon.battle_graphics)
-	player_pokemon_graphic_.show_back()
-	
-	player_pokemon_ = pokemon
-	player_stats_.set_from_pokemon(pokemon)
-	fight_.clear()
-	
-	for move in player_pokemon_.moves:
-		fight_.add_text_menu_item(move.name)
-
-func set_enemy_pokemon_(pokemon) -> void:
-	if enemy_pokemon_graphic_:
-		enemy_pokemon_graphic_.queue_free()
-
-	enemy_pokemon_graphic_ = $enemy_position/pokemon/pokemon.create_instance(false, pokemon.battle_graphics)
-	enemy_pokemon_graphic_.show_front()
-	
-	enemy_pokemon_ = pokemon
-	rival_stats_.set_from_pokemon(pokemon)
 
 func push_menu_(menu) -> void:
 	if not menu_stack_.empty():
@@ -101,14 +89,19 @@ func _on_item_activated(item_idx:int) -> void:
 func _on_attack_activated(attack_idx:int) -> void:
 	pop_menu_()
 	pop_menu_()
-	var attack = player_pokemon_.moves[attack_idx]
-	emit_signal("player_chose_move", { "attack": attack })
+	emit_signal("action", Action.new(Action.Type.attack, attack_idx))
 	
 func _on_pokemon_select_activated(pokemon_idx:int) -> void:
 	pop_menu_()
 	pop_menu_()
-	emit_signal("player_chose_move", { "pokemon": pokemon_idx })
-	
+	emit_signal("action", Action.new(Action.Type.swap, pokemon_idx))
+
+func _on_yes_no_activated(yes_no_idx:int) -> void:
+	if yes_no_idx == 0:
+		push_menu_(pokemon_)
+	else:
+		emit_signal("action", Action.new(Action.Type.cancel, 0))
+
 func damage_(attacker, defender, move:MoveModel) -> float:
 	var t1 = ((2.0 * attacker.level / 5.0) + 2.0)
 	var t2 = (attacker.attack / defender.defense)
@@ -119,147 +112,170 @@ func get_next_player_move_():
 	push_menu_(action_menu_)
 	return self
 
-func get_next_enemy_move_() -> MoveModel:
-	return enemy_pokemon_.moves[round(rand_range(0, enemy_pokemon_.moves.size() - 1))]
+func get_next_enemy_move_() -> int:
+	return int(round(rand_range(0, enemy.active_pokemon.moves.size() - 1)))
 
-func apply_player_pokemon_(pokemon_idx:int) -> void:
-	player_send_out_pokemon_(player.pokemon[pokemon_idx])
-	yield(self, "player_send_out_pokemon_done")
+func apply_player_swap_pokemon_(pokemon_idx:int) -> void:
+	apply_swap_pokemon_(player, pokemon_idx, get_node("player"))
+
+func apply_enemy_swap_pokemon_(pokemon_idx:int) -> void:
+	apply_swap_pokemon_(enemy, pokemon_idx, get_node("enemy"))
+
+func apply_swap_pokemon_(trainer:TrainerModel, pokemon_idx:int, graphics:Node) -> void:
+	if trainer.pokemon.size() <= pokemon_idx:
+		return
+
+	var pokemon:PokemonModel = trainer.pokemon[pokemon_idx]
+
+	if trainer.active_pokemon:
+		if trainer.active_pokemon.hp > 0:
+			yield(info_box_.set_text("Enough! Come back!"), "done")
+			graphics.stats.visible = false
+			yield(graphics.pokemon.withdraw(), "done")
+			graphics.pokemon.queue_free()
+
+	var move_to = -100 if trainer.is_player else 200
+	
+	$tween.interpolate_property(graphics.trainer, "position:x", null, move_to, 0.2)
+	yield($tween.block(), "done")
+
+	var go_text = "Go! %s!" % pokemon.name
+	if not trainer.is_player:
+		go_text = "%s sent out %s." % [trainer.name, pokemon.name]
+
+	yield(info_box_.set_text(go_text), "done")
+	graphics.stats.visible = true
+
+	graphics.pokemon = pokemon.battle_graphics
+
+	if trainer.is_player:
+		graphics.pokemon.show_back()
+	else:
+		graphics.pokemon.show_front()
+
+	trainer.active_pokemon = pokemon
+	graphics.find_node("stats").set_from_pokemon(pokemon)
+	
+	if trainer.is_player:
+		fight_.clear()
+
+		for move in pokemon.moves:
+			fight_.add_text_menu_item(move.name)
+	
+	yield(graphics.pokemon.enter(), "done")
+
+	info_box_.clear_text()
 
 	emit_signal("player_move_applied")
 
-func apply_player_move_(move) -> void:
-	if not move:
+func apply_player_attack_(move_idx:int) -> void:
+	apply_attack_(player.active_pokemon, enemy.active_pokemon, get_node("player"), get_node("enemy"), move_idx)
+
+func apply_enemy_attack_(move_idx:int) -> void:
+	apply_attack_(enemy.active_pokemon, player.active_pokemon, get_node("enemy"), get_node("player"), move_idx)
+
+func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonModel, attacking_graphics:Node, defending_graphics:Node, move_idx:int) -> void:
+	if attacking_pokemon.moves.size() <= move_idx:
 		return
 
-	info_box_.animate_text("%s used %s!" % [player_pokemon_.name, move.name])
-	yield(info_box_, "animate_text_done")
+	var move:MoveModel = attacking_pokemon.moves[move_idx]
+
+	var e := "Enemy " if attacking_pokemon == enemy.active_pokemon else ""
+
+	info_box_.set_text("%s%s used %s!" % [e, attacking_pokemon.name, move.name])
+	yield(info_box_, "done")
 	if move.fx:
 		var fx = move.fx.instance()
-		fx.target_position = $enemy_position.position
+		fx.target_position = defending_graphics.find_node("pokemon").position
 		add_child(fx)
 		yield(fx, "done")
 		fx.queue_free()
 	
-	var damage = damage_(player_pokemon_, enemy_pokemon_, move)
+	var damage = damage_(attacking_pokemon, defending_pokemon, move)
 	var critical = 1.0 if randf() > 0.5 else 2.0
 	
-	enemy_pokemon_.hp -= damage * critical
-	yield(rival_stats_.animate_hp(enemy_pokemon_.hp), "animate_hp_done")
+	defending_pokemon.hp -= damage * critical
+	yield(defending_graphics.find_node("stats").animate_hp(defending_pokemon.hp), "animate_hp_done")
 
 	if critical > 1.0:
-		info_box_.animate_text("Critical hit!")
-		yield(info_box_, "animate_text_done")
+		info_box_.set_text("Critical hit!")
+		yield(info_box_, "done")
 
 	info_box_.clear_text()
 	emit_signal("player_move_applied")
-
-func apply_enemy_move_(move) -> void:
-	if not move:
-		return
-
-	info_box_.animate_text("Enemy %s used %s!" % [enemy_pokemon_.name, move.name])
-	yield(info_box_, "animate_text_done")
-	if move.fx:
-		var fx = move.fx.instance()
-		fx.target_position = $player_position.position
-		add_child(fx)
-		yield(fx, "done")
-		fx.queue_free()
-	
-	var damage = damage_(enemy_pokemon_, player_pokemon_, move)
-	
-	var critical = 1.0 if randf() > 0.5 else 2.0
-
-	player_pokemon_.hp -= damage * critical
-	yield(player_stats_.animate_hp(player_pokemon_.hp), "animate_hp_done")
-	
-	if critical > 1.0:
-		info_box_.animate_text("Critical hit!")
-		yield(info_box_, "animate_text_done")
-
-	info_box_.clear_text()
-	emit_signal("enemy_move_applied")
-
-func swap_player_pokemon_() -> void:
-	pass
-
-func enemy_send_out_pokemon_(pokemon) -> void:
-	if enemy_pokemon_:
-		yield(enemy_pokemon_graphic_.withdraw(), "done")
-
-	set_enemy_pokemon_(pokemon)
-	yield(enemy_pokemon_graphic_.enter(), "done")
-
-	$tween.interpolate_property(enemy_, "position:x", null, 160, 0.2)
-	yield($tween.block(), "done")
-
-	yield(info_box_.animate_text("Dude send out beer!"), "animate_text_done")
-	$enemy_position/pokemon.visible = true
-	rival_stats_.visible = true
-	info_box_.clear_text()
-	emit_signal("enemy_send_out_pokemon_done")
-
-func player_send_out_pokemon_(pokemon) -> void:
-	if player_pokemon_:
-		yield(info_box_.animate_text("Enough! Come back!"), "animate_text_done")
-		yield(player_pokemon_graphic_.withdraw(), "done")
-	
-	set_player_pokemon_(pokemon)
-	yield(player_pokemon_graphic_.enter(), "done")
-
-	$tween.interpolate_property(player_, "position:x", null, -100, 0.2)
-	yield($tween.block(), "done")
-
-	yield(info_box_.animate_text("Go %s" % player_pokemon_.name), "animate_text_done")
-	$player_position/pokemon.visible = true
-	player_stats_.visible = true
-	info_box_.clear_text()
-	emit_signal("player_send_out_pokemon_done")
 
 func game_() -> void:
-	$tween.interpolate_property(player_, "position:x", 144, player_.position.x, 1.0)
-	$tween.interpolate_property(enemy_, "position:x", -144, enemy_.position.x, 1.0)
+	$tween.interpolate_property(player_graphics_.trainer, "position:x", 144, player_graphics_.trainer.position.x, 1.0)
+	$tween.interpolate_property(enemy_graphics_.trainer, "position:x", -144, enemy_graphics_.trainer.position.x, 1.0)
 	yield($tween.block(), "done")
 
-	yield(info_box_.animate_text("Dude wants to fight!"), "animate_text_done")
+	yield(info_box_.set_text("Dude wants to fight!"), "done")
 
-	enemy_send_out_pokemon_(enemy.pokemon[0])
-	yield(self, "enemy_send_out_pokemon_done")
+	apply_enemy_swap_pokemon_(0)
+	yield(self, "player_move_applied")
 	
-	player_send_out_pokemon_(player.pokemon[0])
-	yield(self, "player_send_out_pokemon_done")
+	apply_player_swap_pokemon_(0)
+	yield(self, "player_move_applied")
 
 	while true:
-		var player_move = yield(get_next_player_move_(), "player_chose_move")
+		var player_action = yield(get_next_player_move_(), "action")
 		var enemy_move = get_next_enemy_move_()
 		
-		if player_move.has("attack"):
-			apply_player_move_(player_move.attack)
-			yield(self, "player_move_applied")
-		else:
-			apply_player_pokemon_(player_move.pokemon)
-			yield(self, "player_move_applied")
+		match player_action.type:
+			Action.Type.attack:
+				apply_player_attack_(player_action.idx)
+				yield(self, "player_move_applied")
+			Action.Type.swap:
+				apply_player_swap_pokemon_(player_action.idx)
+				yield(self, "player_move_applied")
 
-		if enemy_pokemon_.hp <= 0:
-			yield(info_box_.animate_text("Enemy fainted."), "animate_text_done")
-			yield(enemy_pokemon_graphic_.faint(), "done")
-			enemy_send_out_pokemon_(enemy.pokemon[1])
-			yield(self, "enemy_send_out_pokemon_done")
+		if enemy.active_pokemon.is_dead():
+			yield(info_box_.set_text("Enemy fainted."), "done")
+			enemy_graphics_.stats.visible = false
+			yield(enemy_graphics_.get_pokemon().faint(), "done")
+
+			yield(info_box_.set_text("%s gained 50 exp." % player.active_pokemon.name), "done")
+
+			if enemy.is_dead():
+				yield(info_box_.set_text("%s is defeated!" % enemy.name), "done")
+				break
+
+			var next_enemy_pokemon_idx = enemy.pokemon.find(enemy.active_pokemon) + 1
+			var next_enemy_pokemon = enemy.pokemon[next_enemy_pokemon_idx]
+			yield(info_box_.set_text("%s is about to use %s." % [enemy.name, next_enemy_pokemon.name]), "done")
+			yield(info_box_.set_text("Will %s change pokemon?" % [player.name], 0.0), "done")
+
+			push_menu_(yes_no_menu_)
+			var action:Action = yield(self, "action")
+			info_box_.clear_text()
+			if action.type == Action.Type.swap:
+				apply_player_swap_pokemon_(action.idx)
+				yield(self, "player_move_applied")
+			
+			pop_menu_()
+
+			apply_enemy_swap_pokemon_(next_enemy_pokemon_idx)
+			yield(self, "player_move_applied")
 			continue
 			
-		apply_enemy_move_(enemy_move)
-		yield(self, "enemy_move_applied")
+		apply_enemy_attack_(enemy_move)
+		yield(self, "player_move_applied")
 		
-		if player_pokemon_.hp <= 0:
-			yield(info_box_.animate_text("%s fainted." % player_pokemon_.name), "animate_text_done")
-			yield(player_pokemon_graphic_.faint(), "done")
-			push_menu_(pokemon_)
-			pokemon_.info.animate_text("What do pick?")
-			info_box_.clear_text()
-			player_move = yield(self, "player_chose_move")
-			apply_player_pokemon_(player_move.pokemon)
-			yield(self, "player_move_applied")
+		if player.active_pokemon.hp <= 0:
+			yield(info_box_.set_text("%s fainted." % player.active_pokemon.name), "done")
+			player_graphics_.stats.visible = false
+			yield(player_graphics_.pokemon.faint(), "done")
+			
+			if player.is_dead():
+				yield(info_box_.set_text("You are out of pokemon. You loose"), "done")
+				break
+			else:
+				push_menu_(pokemon_)
+				pokemon_.info.set_text("Bring out which POKeMON?")
+				info_box_.clear_text()
+				var action:Action = yield(self, "action")
+				apply_player_swap_pokemon_(action.idx)
+				yield(self, "player_move_applied")
 
 			continue
 

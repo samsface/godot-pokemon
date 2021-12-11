@@ -3,6 +3,7 @@ class_name Menu
 
 signal activated
 signal cancel
+signal message
 
 export(Array, NodePath) var menu_items
 
@@ -40,6 +41,7 @@ func _input(event):
 		activate_()
 	elif Input.is_action_just_pressed("ui_cancel"):
 		emit_signal("cancel")
+		emit_signal("message", ["cancel"])
 
 func up_() -> void:
 	if menu_items.empty():
@@ -75,3 +77,4 @@ func select_(idx, force := false) -> void:
 func activate_() -> void:
 	emit_signal(get_node(menu_items[idx_]).name)
 	emit_signal("activated", get_node(menu_items[idx_]).get_position_in_parent())
+	emit_signal("message", ["activated", get_node(menu_items[idx_]).get_position_in_parent()])

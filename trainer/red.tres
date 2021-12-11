@@ -39,3 +39,4 @@ script = ExtResource( 1 )
 name = "Red"
 pokemon = [ SubResource( 2 ), SubResource( 1 ) ]
 items = [  ]
+is_player = false

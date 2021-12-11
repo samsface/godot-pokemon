@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://trainer/red.tres" type="Resource" id=1]
+[ext_resource path="res://battle/graphic.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://widgets/pokemon_info_player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ref2.png" type="Texture" id=5]
@@ -43,41 +44,38 @@ enemy = ExtResource( 1 )
 [node name="tween" type="Tween" parent="."]
 script = ExtResource( 17 )
 
-[node name="enemy_position" type="Position2D" parent="."]
+[node name="enemy" type="Position2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="pokemon" type="Position2D" parent="enemy"]
+position = Vector2( 115, 9 )
+
+[node name="trainer" type="Position2D" parent="enemy"]
 position = Vector2( 122.981, 30.6927 )
 
-[node name="pokemon" type="Position2D" parent="enemy_position"]
-visible = false
-
-[node name="pokemon" parent="enemy_position/pokemon" instance_placeholder="res://pokemon/beer/beer_battle_graphic.tscn"]
-position = Vector2( -10.981, -23.6927 )
-
-[node name="enemy" type="Sprite" parent="enemy_position"]
+[node name="enemy" type="Sprite" parent="enemy/trainer"]
 scale = Vector2( 0.659458, 0.659458 )
 texture = ExtResource( 9 )
 
-[node name="player_position" type="Position2D" parent="."]
+[node name="stats" parent="enemy" instance=ExtResource( 13 )]
+visible = false
+position = Vector2( -64, -56 )
+
+[node name="player" type="Position2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="pokemon" type="Position2D" parent="player"]
+position = Vector2( 25, 62 )
+
+[node name="trainer" type="Position2D" parent="player"]
 position = Vector2( 32.3745, 76.942 )
 
-[node name="pokemon" type="Position2D" parent="player_position"]
-visible = false
-position = Vector2( 3.43981, 1.87614 )
-scale = Vector2( 0.7, 0.7 )
-
-[node name="pokemon" parent="player_position/pokemon" instance_placeholder="res://pokemon/hat/hat_battle_graphic.tscn"]
-position = Vector2( -19.7347, -42.5973 )
-scale = Vector2( 1.42857, 1.42857 )
-
-[node name="player" type="Sprite" parent="player_position"]
+[node name="player" type="Sprite" parent="player/trainer"]
 position = Vector2( 3.43981, 1.87614 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
 
-[node name="rival_stats" parent="." instance=ExtResource( 13 )]
-visible = false
-position = Vector2( -64, -56 )
-
-[node name="player_stats" parent="." instance=ExtResource( 4 )]
+[node name="stats" parent="player" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 80, 72 )
 
@@ -200,6 +198,61 @@ margin_top = 4.0
 margin_right = 118.0
 margin_bottom = 40.0
 custom_constants/separation = -5
+
+[node name="yes_no_menu" type="PanelContainer" parent="."]
+visible = false
+margin_top = 61.0
+margin_right = 46.0
+margin_bottom = 97.0
+size_flags_vertical = 10
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+menu_items = [ NodePath("m/m/col_1/yes"), NodePath("m/m/col_1/no") ]
+
+[node name="m" type="NinePatchRect" parent="yes_no_menu"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 45.0
+margin_bottom = 35.0
+texture = ExtResource( 11 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="m" type="MarginContainer" parent="yes_no_menu/m"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 6
+custom_constants/margin_top = 4
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="col_1" type="VBoxContainer" parent="yes_no_menu/m/m"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 39.0
+margin_bottom = 29.0
+custom_constants/separation = -1
+
+[node name="yes" parent="yes_no_menu/m/m/col_1" instance=ExtResource( 7 )]
+margin_right = 33.0
+capitalize = true
+text = "yes"
+selected = true
+
+[node name="no" parent="yes_no_menu/m/m/col_1" instance=ExtResource( 7 )]
+margin_top = 12.0
+margin_right = 33.0
+margin_bottom = 25.0
+capitalize = true
+text = "no"
 
 [node name="items" type="PanelContainer" parent="."]
 visible = false

@@ -24,5 +24,6 @@ battle_graphics = ExtResource( 6 )
 [resource]
 script = ExtResource( 1 )
 name = "Blue"
-pokemon = [ ExtResource( 4 ), ExtResource( 2 ), SubResource( 1 ) ]
+pokemon = [ ExtResource( 2 ), ExtResource( 4 ), SubResource( 1 ) ]
 items = [  ]
+is_player = true
