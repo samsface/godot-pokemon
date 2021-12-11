@@ -1,11 +1,7 @@
 extends Node
 
-signal player_chose_move
-signal player_move_applied
-signal enemy_move_applied
-signal enemy_send_out_pokemon_done
-signal player_send_out_pokemon_done
-signal action
+signal action_choosen
+signal action_applied
 
 export(Resource) var player
 export(Resource) var enemy
@@ -89,18 +85,18 @@ func _on_item_activated(item_idx:int) -> void:
 func _on_attack_activated(attack_idx:int) -> void:
 	pop_menu_()
 	pop_menu_()
-	emit_signal("action", Action.new(Action.Type.attack, attack_idx))
+	emit_signal("action_choosen", Action.new(Action.Type.attack, attack_idx))
 	
 func _on_pokemon_select_activated(pokemon_idx:int) -> void:
 	pop_menu_()
 	pop_menu_()
-	emit_signal("action", Action.new(Action.Type.swap, pokemon_idx))
+	emit_signal("action_choosen", Action.new(Action.Type.swap, pokemon_idx))
 
 func _on_yes_no_activated(yes_no_idx:int) -> void:
 	if yes_no_idx == 0:
 		push_menu_(pokemon_)
 	else:
-		emit_signal("action", Action.new(Action.Type.cancel, 0))
+		emit_signal("action_choosen", Action.new(Action.Type.cancel, 0))
 
 func damage_(attacker, defender, move:MoveModel) -> float:
 	var t1 = ((2.0 * attacker.level / 5.0) + 2.0)
@@ -166,7 +162,7 @@ func apply_swap_pokemon_(trainer:TrainerModel, pokemon_idx:int, graphics:Node) -
 
 	info_box_.clear_text()
 
-	emit_signal("player_move_applied")
+	emit_signal("action_applied")
 
 func apply_player_attack_(move_idx:int) -> void:
 	apply_attack_(player.active_pokemon, enemy.active_pokemon, get_node("player"), get_node("enemy"), move_idx)
@@ -202,7 +198,7 @@ func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonMode
 		yield(info_box_, "done")
 
 	info_box_.clear_text()
-	emit_signal("player_move_applied")
+	emit_signal("action_applied")
 
 func game_() -> void:
 	$tween.interpolate_property(player_graphics_.trainer, "position:x", 144, player_graphics_.trainer.position.x, 1.0)
@@ -212,22 +208,22 @@ func game_() -> void:
 	yield(info_box_.set_text("Dude wants to fight!"), "done")
 
 	apply_enemy_swap_pokemon_(0)
-	yield(self, "player_move_applied")
+	yield(self, "action_applied")
 	
 	apply_player_swap_pokemon_(0)
-	yield(self, "player_move_applied")
+	yield(self, "action_applied")
 
 	while true:
-		var player_action = yield(get_next_player_move_(), "action")
+		var player_action = yield(get_next_player_move_(), "action_choosen")
 		var enemy_move = get_next_enemy_move_()
 		
 		match player_action.type:
 			Action.Type.attack:
 				apply_player_attack_(player_action.idx)
-				yield(self, "player_move_applied")
+				yield(self, "action_applied")
 			Action.Type.swap:
 				apply_player_swap_pokemon_(player_action.idx)
-				yield(self, "player_move_applied")
+				yield(self, "action_applied")
 
 		if enemy.active_pokemon.is_dead():
 			yield(info_box_.set_text("Enemy fainted."), "done")
@@ -246,20 +242,20 @@ func game_() -> void:
 			yield(info_box_.set_text("Will %s change pokemon?" % [player.name], 0.0), "done")
 
 			push_menu_(yes_no_menu_)
-			var action:Action = yield(self, "action")
+			var action:Action = yield(self, "action_choosen")
 			info_box_.clear_text()
 			if action.type == Action.Type.swap:
 				apply_player_swap_pokemon_(action.idx)
-				yield(self, "player_move_applied")
+				yield(self, "action_applied")
 			
 			pop_menu_()
 
 			apply_enemy_swap_pokemon_(next_enemy_pokemon_idx)
-			yield(self, "player_move_applied")
+			yield(self, "action_applied")
 			continue
 			
 		apply_enemy_attack_(enemy_move)
-		yield(self, "player_move_applied")
+		yield(self, "action_applied")
 		
 		if player.active_pokemon.hp <= 0:
 			yield(info_box_.set_text("%s fainted." % player.active_pokemon.name), "done")
@@ -273,10 +269,9 @@ func game_() -> void:
 				push_menu_(pokemon_)
 				pokemon_.info.set_text("Bring out which POKeMON?")
 				info_box_.clear_text()
-				var action:Action = yield(self, "action")
+				var action:Action = yield(self, "action_choosen")
 				apply_player_swap_pokemon_(action.idx)
-				yield(self, "player_move_applied")
+				yield(self, "action_applied")
 
-			continue
 
 
