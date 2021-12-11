@@ -2,6 +2,7 @@ extends Node
 
 signal action_choosen
 signal action_applied
+signal done
 
 export(Resource) var player
 export(Resource) var enemy
@@ -280,3 +281,5 @@ func game_() -> void:
 		yield($tween.block(), "done")
 		for line in enemy.loose_speach:
 			yield(info_box_.set_text(line), "done")
+
+	emit_signal("done")

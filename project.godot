@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="jam"
-run/main_scene="res://battle/battle.tscn"
+run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
