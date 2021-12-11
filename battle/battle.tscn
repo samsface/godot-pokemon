@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://trainer/red.tres" type="Resource" id=1]
 [ext_resource path="res://battle/graphic.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://widgets/pokemon_info_player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ref2.png" type="Texture" id=5]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=6]
 [ext_resource path="res://widgets/menu_button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://battle/battle.gd" type="Script" id=8]
@@ -15,7 +14,7 @@
 [ext_resource path="res://widgets/pokemon_info_enemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://trainer/blue.tres" type="Resource" id=14]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=17]
-[ext_resource path="res://battle/pokemon_menu.tscn" type="PackedScene" id=18]
+[ext_resource path="res://widgets/pokemon_menu.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 1.0
@@ -299,9 +298,3 @@ margin_bottom = 79.0
 
 [node name="pokemon_list" parent="." instance=ExtResource( 18 )]
 visible = false
-
-[node name="Ref2" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.572549 )
-position = Vector2( 80, 72 )
-texture = ExtResource( 5 )

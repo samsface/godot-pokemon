@@ -25,4 +25,4 @@ name = "Red"
 pokemon = [ SubResource( 2 ) ]
 items = [  ]
 is_player = false
-loose_speach = [ "I lost, that sucks!" ]
+loose_speach = [ "I lost, that sucks!", "I should of tried harder..." ]
