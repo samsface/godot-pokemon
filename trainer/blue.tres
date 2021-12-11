@@ -27,3 +27,4 @@ name = "Blue"
 pokemon = [ ExtResource( 2 ), ExtResource( 4 ), SubResource( 1 ) ]
 items = [  ]
 is_player = true
+loose_speach = [  ]

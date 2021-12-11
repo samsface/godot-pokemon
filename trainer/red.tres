@@ -1,10 +1,9 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=2]
 [ext_resource path="res://moves/thunderbolt.tres" type="Resource" id=3]
 [ext_resource path="res://pokemon/beer/beer_battle_graphic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://pokemon/hat/hat_battle_graphic.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Resource" id=2]
 resource_local_to_scene = true
@@ -20,23 +19,10 @@ speed = 1
 moves = [ ExtResource( 3 ) ]
 battle_graphics = ExtResource( 4 )
 
-[sub_resource type="Resource" id=1]
-resource_local_to_scene = true
-script = ExtResource( 2 )
-name = "Hat"
-level = 1
-hp = 15
-max_hp = 20
-xp = 10
-attack = 1
-defense = 1
-speed = 1
-moves = [ ExtResource( 3 ) ]
-battle_graphics = ExtResource( 5 )
-
 [resource]
 script = ExtResource( 1 )
 name = "Red"
-pokemon = [ SubResource( 2 ), SubResource( 1 ) ]
+pokemon = [ SubResource( 2 ) ]
 items = [  ]
 is_player = false
+loose_speach = [ "I lost, that sucks!" ]

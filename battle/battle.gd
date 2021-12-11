@@ -37,6 +37,7 @@ func _ready():
 	action_menu_.connect("fight", self, "push_menu_", [find_node("fight_menu")])
 	action_menu_.connect("item", self, "push_menu_", [items_])
 	action_menu_.connect("pokemon", self, "push_menu_", [pokemon_])
+	action_menu_.connect("pokemon", pokemon_.info, "set_text", ["Bring out which POKeMON?"])
 
 	fight_.connect("activated", self, "_on_attack_activated")
 	fight_.set_process_input(false)
@@ -105,6 +106,7 @@ func damage_(attacker, defender, move:MoveModel) -> float:
 	return d
 
 func get_next_player_move_():
+	action_menu_.select_(0)
 	push_menu_(action_menu_)
 	return self
 
@@ -273,5 +275,8 @@ func game_() -> void:
 				apply_player_swap_pokemon_(action.idx)
 				yield(self, "action_applied")
 
-
-
+	if enemy.is_dead():
+		$tween.interpolate_property(enemy_graphics_.trainer, "position:x", null, 130, 0.5)
+		yield($tween.block(), "done")
+		for line in enemy.loose_speach:
+			yield(info_box_.set_text(line), "done")

@@ -54,7 +54,8 @@ position = Vector2( 115, 9 )
 position = Vector2( 122.981, 30.6927 )
 
 [node name="enemy" type="Sprite" parent="enemy/trainer"]
-scale = Vector2( 0.659458, 0.659458 )
+position = Vector2( -2.72291, -4.18161 )
+scale = Vector2( 0.562211, 0.562211 )
 texture = ExtResource( 9 )
 
 [node name="stats" parent="enemy" instance=ExtResource( 13 )]
