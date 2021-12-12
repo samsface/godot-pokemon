@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://pokemon/pokemon_model.gd"
 }, {
+"base": "Node2D",
+"class": "TrainerGraphic",
+"language": "GDScript",
+"path": "res://trainer/trainer_graphic.gd"
+}, {
 "base": "Resource",
 "class": "TrainerModel",
 "language": "GDScript",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "Menu": "",
 "MoveModel": "",
 "PokemonModel": "",
+"TrainerGraphic": "",
 "TrainerModel": "",
 "TweenEx": ""
 }

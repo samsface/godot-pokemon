@@ -34,6 +34,9 @@ class Action:
 	var idx := 0
 
 func _ready():
+	player_graphics_.trainer.replace_by_instance(player.battle_graphic)
+	enemy_graphics_.trainer.replace_by_instance(enemy.battle_graphic)
+	
 	action_menu_.set_process_input(false)
 	action_menu_.connect("fight", self, "push_menu_", [find_node("fight_menu")])
 	action_menu_.connect("item", self, "push_menu_", [items_])
@@ -133,9 +136,7 @@ func apply_swap_pokemon_(trainer:TrainerModel, pokemon_idx:int, graphics:Node) -
 			yield(graphics.pokemon.withdraw(), "done")
 			graphics.pokemon.queue_free()
 
-	var move_to = -100 if trainer.is_player else 200
-	
-	$tween.interpolate_property(graphics.trainer, "position:x", null, move_to, 0.2)
+	graphics.trainer.exit($tween)
 	yield($tween.block(), "done")
 
 	var go_text = "Go! %s!" % pokemon.name
@@ -204,8 +205,10 @@ func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonMode
 	emit_signal("action_applied")
 
 func game_() -> void:
-	$tween.interpolate_property(player_graphics_.trainer, "position:x", 144, player_graphics_.trainer.position.x, 1.0)
-	$tween.interpolate_property(enemy_graphics_.trainer, "position:x", -144, enemy_graphics_.trainer.position.x, 1.0)
+	player_graphics_.trainer.show_back()
+	enemy_graphics_.trainer.show_front()
+	player_graphics_.trainer.begin($tween)
+	enemy_graphics_.trainer.begin($tween)
 	yield($tween.block(), "done")
 
 	yield(info_box_.set_text("Dude wants to fight!"), "done")
@@ -277,7 +280,7 @@ func game_() -> void:
 				yield(self, "action_applied")
 
 	if enemy.is_dead():
-		$tween.interpolate_property(enemy_graphics_.trainer, "position:x", null, 130, 0.5)
+		enemy_graphics_.trainer.enter($tween)
 		yield($tween.block(), "done")
 		for line in enemy.loose_speach:
 			yield(info_box_.set_text(line), "done")

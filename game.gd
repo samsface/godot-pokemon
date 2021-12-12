@@ -11,6 +11,7 @@ func _ready():
 		yield(transition, "done")
 		yield(get_tree().create_timer(1.0), "timeout")
 		transition.queue_free()
+		$music.play()
 		var battle = $battle.create_instance()
 		yield(battle, "done")
 		battle.queue_free()

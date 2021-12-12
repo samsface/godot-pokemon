@@ -1,18 +1,16 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://trainer/red.tres" type="Resource" id=1]
+[ext_resource path="res://trainer/red/red.tres" type="Resource" id=1]
 [ext_resource path="res://battle/graphic.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://widgets/pokemon_info_player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=6]
 [ext_resource path="res://widgets/menu_button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://battle/battle.gd" type="Script" id=8]
-[ext_resource path="res://widgets/sprites/char02_0000.png" type="Texture" id=9]
-[ext_resource path="res://widgets/sprites/char04_0006.png" type="Texture" id=10]
 [ext_resource path="res://widgets/sprites/panel.png" type="Texture" id=11]
 [ext_resource path="res://widgets/menu.gd" type="Script" id=12]
 [ext_resource path="res://widgets/pokemon_info_enemy.tscn" type="PackedScene" id=13]
-[ext_resource path="res://trainer/blue.tres" type="Resource" id=14]
+[ext_resource path="res://trainer/blue/blue.tres" type="Resource" id=14]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=17]
 [ext_resource path="res://widgets/pokemon_menu.tscn" type="PackedScene" id=18]
 
@@ -49,13 +47,7 @@ script = ExtResource( 2 )
 [node name="pokemon" type="Position2D" parent="enemy"]
 position = Vector2( 115, 9 )
 
-[node name="trainer" type="Position2D" parent="enemy"]
-position = Vector2( 122.981, 30.6927 )
-
-[node name="enemy" type="Sprite" parent="enemy/trainer"]
-position = Vector2( -2.72291, -4.18161 )
-scale = Vector2( 0.562211, 0.562211 )
-texture = ExtResource( 9 )
+[node name="trainer" parent="enemy" instance_placeholder="res://trainer/red/red_trainer_graphic.tscn"]
 
 [node name="stats" parent="enemy" instance=ExtResource( 13 )]
 visible = false
@@ -67,13 +59,7 @@ script = ExtResource( 2 )
 [node name="pokemon" type="Position2D" parent="player"]
 position = Vector2( 25, 62 )
 
-[node name="trainer" type="Position2D" parent="player"]
-position = Vector2( 32.3745, 76.942 )
-
-[node name="player" type="Sprite" parent="player/trainer"]
-position = Vector2( 3.43981, 1.87614 )
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 10 )
+[node name="trainer" parent="player" instance_placeholder="res://trainer/blue/blue_trainer_graphic.tscn"]
 
 [node name="stats" parent="player" instance=ExtResource( 4 )]
 visible = false

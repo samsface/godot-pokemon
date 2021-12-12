@@ -17,6 +17,9 @@ func wait(time:float) -> Tween:
 	block()
 	return self
 
+func step_property(object, property, from, to, delay) -> void:
+	interpolate_property(object, property, from, to, 0, 0, 0, delay)
+
 func _unhandled_input(event) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		seek(get_runtime())

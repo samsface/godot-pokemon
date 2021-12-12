@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://moves/effects/effect.gd" type="Script" id=1]
 [ext_resource path="res://widgets/sprites/circle.png" type="Texture" id=2]
 [ext_resource path="res://moves/effects/invert.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sounds/electric.wav" type="AudioStream" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="electirc" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "fx"
 
 [node name="circle" type="Sprite" parent="."]
 position = Vector2( 0.112549, 0.278774 )

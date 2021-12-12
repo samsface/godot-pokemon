@@ -15,10 +15,13 @@ func show_front():
 	$back.visible = false
 
 func faint():
+	$faint.play()
 	tween_.interpolate_property(self, "position:y", null, 200, 0.5)
 	return tween_.block()
 
 func enter():
+	$enter.pitch_scale = 1.0 + rand_range(-0.3, 0.9)
+	$enter.play()
 	tween_.interpolate_property(self, "scale", Vector2(), scale, 0.5)
 	scale = Vector2()
 	return tween_.block()
