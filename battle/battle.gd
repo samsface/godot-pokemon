@@ -23,7 +23,8 @@ class Action:
 		item,
 		attack,
 		swap,
-		cancel
+		cancel,
+		run
 	}
 	
 	func _init(type:int, idx:int) -> void:
@@ -40,6 +41,7 @@ func _ready():
 	action_menu_.set_process_input(false)
 	action_menu_.connect("fight", self, "push_menu_", [find_node("fight_menu")])
 	action_menu_.connect("item", self, "push_menu_", [items_])
+	action_menu_.connect("run", self, "_on_run")
 	action_menu_.connect("pokemon", self, "push_menu_", [pokemon_])
 	action_menu_.connect("pokemon", pokemon_.info, "set_text", ["Bring out which POKeMON?"])
 
@@ -83,6 +85,9 @@ func pop_menu_() -> void:
 	
 	menu_stack_.back().set_process_input(true)
 	menu_stack_.back().visible = true
+
+func _on_run() -> void:
+	emit_signal("action_choosen", Action.new(Action.Type.run, 0))
 
 func _on_item_activated(item_idx:int) -> void:
 	pop_menu_()
@@ -223,6 +228,9 @@ func game_() -> void:
 		var player_action = yield(get_next_player_move_(), "action_choosen")
 		var enemy_move = get_next_enemy_move_()
 		
+		pop_menu_()
+		pop_menu_()
+		
 		match player_action.type:
 			Action.Type.attack:
 				apply_player_attack_(player_action.idx)
@@ -230,6 +238,9 @@ func game_() -> void:
 			Action.Type.swap:
 				apply_player_swap_pokemon_(player_action.idx)
 				yield(self, "action_applied")
+			Action.Type.run:
+				yield(info_box_.set_text("You begin to run away..."), "done")
+				yield(info_box_.set_text("You ran in a circle by mistake."), "done")
 
 		if enemy.active_pokemon.is_dead():
 			yield(info_box_.set_text("Enemy fainted."), "done")

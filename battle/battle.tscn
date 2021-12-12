@@ -45,19 +45,18 @@ script = ExtResource( 17 )
 script = ExtResource( 2 )
 
 [node name="pokemon" type="Position2D" parent="enemy"]
-position = Vector2( 115, 9 )
+position = Vector2( 126, 29 )
 
 [node name="trainer" parent="enemy" instance_placeholder="res://trainer/red/red_trainer_graphic.tscn"]
 
 [node name="stats" parent="enemy" instance=ExtResource( 13 )]
 visible = false
-position = Vector2( -64, -56 )
 
 [node name="player" type="Position2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="pokemon" type="Position2D" parent="player"]
-position = Vector2( 25, 62 )
+position = Vector2( 28, 73 )
 
 [node name="trainer" parent="player" instance_placeholder="res://trainer/blue/blue_trainer_graphic.tscn"]
 
