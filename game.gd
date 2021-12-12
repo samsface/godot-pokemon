@@ -5,13 +5,15 @@ onready var info = find_node("info")
 
 func _ready():
 	while true:
-		yield(info.set_text("Are you ready to be a pokemon master?"), "done")
+		yield(info.set_text_for_confirm("Are you ready to be a pokemon master?"), "done")
+		info.clear_text()
+		yield(get_tree().create_timer(0.5), "timeout")
 		var transition = $transition.create_instance()
 		transition.start()
 		yield(transition, "done")
-		yield(get_tree().create_timer(1.0), "timeout")
-		transition.queue_free()
 		$music.play()
+		yield(get_tree().create_timer(0.8), "timeout")
+		transition.queue_free()
 		var battle = $battle.create_instance()
 		yield(battle, "done")
 		battle.queue_free()

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=1]
-[ext_resource path="res://moves/thunderbolt.tres" type="Resource" id=2]
+[ext_resource path="res://moves/electric/thunderbolt.tres" type="Resource" id=2]
 [ext_resource path="res://pokemon/hat/hat_battle_graphic.tscn" type="PackedScene" id=3]
 
 [resource]

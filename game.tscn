@@ -18,7 +18,11 @@ void fragment()
 
 	blur.a = round(sin((uv.y * 800.0)));
 
-	vec4 color = mix(blur, clear, blur.r * 1.5);
+	vec4 color = mix(blur, clear, blur.r * 2.0);
+	
+	//clear.rgb = floor(clear.rgb * 2.0) / 2.0;
+	
+	
 
 	COLOR = color;
 }"

@@ -66,7 +66,7 @@ func push_menu_(menu) -> void:
 		menu_stack_.back().set_process_input(false)
 
 	if menu_stack_.size() > 0:
-		menu.connect("cancel", self, "pop_menu_", [], CONNECT_ONESHOT)
+		menu.connect("cancel", self, "pop_menu_", [])
 
 	menu_stack_.push_back(menu)
 	menu.visible = true
@@ -79,7 +79,9 @@ func pop_menu_() -> void:
 	var popped_menu = menu_stack_.pop_back()
 	popped_menu.visible = false
 	popped_menu.set_process_input(false)
-	
+	if popped_menu.is_connected("cancel", self, "pop_menu_"):
+		popped_menu.disconnect("cancel", self, "pop_menu_")
+
 	if menu_stack_.empty():
 		return
 	
@@ -177,8 +179,8 @@ func apply_player_attack_(move_idx:int) -> void:
 	apply_attack_(player.active_pokemon, enemy.active_pokemon, get_node("player"), get_node("enemy"), move_idx)
 
 func apply_enemy_attack_(move_idx:int) -> void:
-	apply_attack_(enemy.active_pokemon, player.active_pokemon, get_node("enemy"), get_node("player"), move_idx)
 
+	apply_attack_(enemy.active_pokemon, player.active_pokemon, get_node("enemy"), get_node("player"), move_idx)
 func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonModel, attacking_graphics:Node, defending_graphics:Node, move_idx:int) -> void:
 	if attacking_pokemon.moves.size() <= move_idx:
 		return
@@ -187,8 +189,7 @@ func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonMode
 
 	var e := "Enemy " if attacking_pokemon == enemy.active_pokemon else ""
 
-	info_box_.set_text("%s%s used %s!" % [e, attacking_pokemon.name, move.name])
-	yield(info_box_, "done")
+	yield(info_box_.set_text("%s%s used %s!" % [e, attacking_pokemon.name, move.name]), "done")
 	if move.fx:
 		var fx = move.fx.instance()
 		fx.target_position = defending_graphics.find_node("pokemon").position
@@ -202,9 +203,8 @@ func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonMode
 	defending_pokemon.hp -= damage * critical
 	yield(defending_graphics.find_node("stats").animate_hp(defending_pokemon.hp), "animate_hp_done")
 
-	if critical > 1.0:
-		info_box_.set_text("Critical hit!")
-		yield(info_box_, "done")
+	if critical >= 2.0:
+		yield(info_box_.set_text_for_confirm("Critical hit!"), "done")
 
 	info_box_.clear_text()
 	emit_signal("action_applied")
@@ -216,7 +216,7 @@ func game_() -> void:
 	enemy_graphics_.trainer.begin($tween)
 	yield($tween.block(), "done")
 
-	yield(info_box_.set_text("Dude wants to fight!"), "done")
+	yield(info_box_.set_text_for_confirm("Dude wants to fight!"), "done")
 
 	apply_enemy_swap_pokemon_(0)
 	yield(self, "action_applied")
@@ -243,14 +243,14 @@ func game_() -> void:
 				yield(info_box_.set_text("You ran in a circle by mistake."), "done")
 
 		if enemy.active_pokemon.is_dead():
-			yield(info_box_.set_text("Enemy fainted."), "done")
 			enemy_graphics_.stats.visible = false
 			yield(enemy_graphics_.get_pokemon().faint(), "done")
+			yield(info_box_.set_text_for_confirm("Enemy %s fainted!" % enemy.active_pokemon.name), "done")
 
-			yield(info_box_.set_text("%s gained 50 exp." % player.active_pokemon.name), "done")
+			yield(info_box_.set_text_for_confirm("%s gained 50 EXP." % player.active_pokemon.name), "done")
 
 			if enemy.is_dead():
-				yield(info_box_.set_text("%s is defeated!" % enemy.name), "done")
+				yield(info_box_.set_text_for_confirm("%s is defeated!" % enemy.name), "done")
 				break
 
 			var next_enemy_pokemon_idx = enemy.pokemon.find(enemy.active_pokemon) + 1
@@ -294,6 +294,6 @@ func game_() -> void:
 		enemy_graphics_.trainer.enter($tween)
 		yield($tween.block(), "done")
 		for line in enemy.loose_speach:
-			yield(info_box_.set_text(line), "done")
+			yield(info_box_.set_text_for_confirm(line), "done")
 
 	emit_signal("done")

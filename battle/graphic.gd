@@ -10,7 +10,9 @@ func set_pokemon(value):
 	find_node("pokemon").add_child(value.instance())
 
 func get_pokemon() -> Node:
-	return find_node("pokemon").get_child(0)
+	if find_node("pokemon").get_child_count() > 0:
+		return find_node("pokemon").get_child(0)
+	return null
 
 func set_trainer(value):
 	trainer = value

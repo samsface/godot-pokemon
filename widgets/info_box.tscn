@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://widgets/info_box.gd" type="Script" id=1]
 [ext_resource path="res://widgets/sprites/panel.png" type="Texture" id=2]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=3]
 [ext_resource path="res://widgets/sprites/arrow.png" type="Texture" id=4]
+[ext_resource path="res://sounds/activate.wav" type="AudioStream" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 1.0
@@ -71,3 +72,6 @@ custom_effects = [ null ]
 
 [node name="tween" type="Tween" parent="NinePatchRect/MarginContainer/info_text"]
 script = ExtResource( 3 )
+
+[node name="activate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cut.wav-099e499ce4d881b6acfb716f774b5694.sample"
+
+[deps]
+
+source_file="res://moves/cut/cut.wav"
+dest_files=[ "res://.import/cut.wav-099e499ce4d881b6acfb716f774b5694.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

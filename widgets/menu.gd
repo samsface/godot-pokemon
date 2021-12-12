@@ -98,5 +98,6 @@ func select_(idx, force := false, sound := input_) -> void:
 
 func activate_() -> void:
 	activate_sound_.play()
-	emit_signal(get_node(menu_items[idx_]).name)
+	if has_user_signal(get_node(menu_items[idx_]).name):
+		emit_signal(get_node(menu_items[idx_]).name)
 	emit_signal("activated", get_node(menu_items[idx_]).get_position_in_parent())

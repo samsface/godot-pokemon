@@ -7,7 +7,7 @@ func _ready() -> void:
 	set_process_unhandled_input(false)
 
 func block() -> Tween:
-	connect("tween_all_completed", self, "_on_tween_all_completed")
+	connect("tween_all_completed", self, "_on_tween_all_completed", [], CONNECT_ONESHOT | CONNECT_REFERENCE_COUNTED)
 	start()
 	call_deferred("set_process_unhandled_input", true)
 	return self
