@@ -10,7 +10,7 @@
 [ext_resource path="res://moves/electric/BoulderSpike0004.png" type="Texture" id=8]
 [ext_resource path="res://moves/electric/BoulderSpike0000.png" type="Texture" id=9]
 [ext_resource path="res://moves/electric/BoulderSpike0007.png" type="Texture" id=10]
-[ext_resource path="res://moves/electric/thunderbolt_graphic.gd" type="Script" id=11]
+[ext_resource path="res://moves/fire/burn_graphic.gd" type="Script" id=11]
 [ext_resource path="res://moves/hit.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -32,7 +32,7 @@ rect_min_size = Vector2( 160, 144 )
 [node name="sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
-frame = 7
+frame = 1
 playing = true
 
 [node name="audio" type="AudioStreamPlayer" parent="."]

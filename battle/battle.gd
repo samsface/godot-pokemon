@@ -242,8 +242,8 @@ func game_() -> void:
 				apply_player_swap_pokemon_(player_action.idx)
 				yield(self, "action_applied")
 			Action.Type.run:
-				yield(info_box_.set_text("You begin to run away..."), "done")
-				yield(info_box_.set_text("You ran in a circle by mistake."), "done")
+				yield(info_box_.set_text_for_confirm("You begin to run away..."), "done")
+				yield(info_box_.set_text_for_confirm("You ran in a circle by mistake."), "done")
 
 		if enemy.active_pokemon.is_dead():
 			enemy_graphics_.stats.visible = false

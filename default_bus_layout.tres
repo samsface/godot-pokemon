@@ -1,35 +1,19 @@
-[gd_resource type="AudioBusLayout" load_steps=4 format=2]
+[gd_resource type="AudioBusLayout" load_steps=2 format=2]
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
 room_size = 0.09
 wet = 0.16
 
-[sub_resource type="AudioEffectPitchShift" id=2]
-resource_name = "PitchShift"
-pitch_scale = 0.87
-
-[sub_resource type="AudioEffectCompressor" id=3]
-resource_name = "Compressor"
-threshold = -30.0
-ratio = 1.5
-attack_us = 70.0
-release_ms = 70.0
-sidechain = "fx"
-
 [resource]
 bus/0/effect/0/effect = SubResource( 1 )
 bus/0/effect/0/enabled = true
-bus/0/effect/1/effect = SubResource( 2 )
-bus/0/effect/1/enabled = true
 bus/1/name = "music"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = "Master"
-bus/1/effect/0/effect = SubResource( 3 )
-bus/1/effect/0/enabled = true
 bus/2/name = "fx"
 bus/2/solo = false
 bus/2/mute = false

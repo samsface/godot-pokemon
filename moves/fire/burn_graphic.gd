@@ -4,6 +4,7 @@ func _play():
 	for i in 2:
 		$sprite.visible = true
 		$sprite.position = attacker_graphics.position
+		$sprite.look_at(defender_graphics.position)
 		shake_camera_()
 		play_audio_($audio)
 		tween_.interpolate_property($sprite, "position", attacker_graphics.position, defender_graphics.position, 0.5, Tween.TRANS_QUAD)

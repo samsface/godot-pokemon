@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=1]
 [ext_resource path="res://moves/electric/thunderbolt.tres" type="Resource" id=2]
 [ext_resource path="res://pokemon/beer/beer_battle_graphic.tscn" type="PackedScene" id=3]
 [ext_resource path="res://moves/cut/cut.tres" type="Resource" id=4]
 [ext_resource path="res://moves/fire/burn.tres" type="Resource" id=5]
+[ext_resource path="res://moves/chair/chair.tres" type="Resource" id=6]
 
 [resource]
 resource_local_to_scene = true
@@ -17,5 +18,5 @@ xp = 10
 attack = 1
 defense = 1
 speed = 1
-moves = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ) ]
+moves = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ]
 battle_graphics = ExtResource( 3 )
