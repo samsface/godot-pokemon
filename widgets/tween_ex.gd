@@ -17,7 +17,7 @@ func wait(time:float) -> Tween:
 	block()
 	return self
 
-func step_property(object, property, from, to, delay) -> void:
+func step_property(object, property, from, to, delay := 0.0) -> void:
 	interpolate_property(object, property, from, to, 0, 0, 0, delay)
 
 func _unhandled_input(event) -> void:

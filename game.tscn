@@ -36,7 +36,6 @@ script = ExtResource( 3 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="crt" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -57,6 +56,8 @@ margin_bottom = 144.0
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -6.0
+mix_target = 2
 bus = "music"
 
 [node name="transition" parent="." instance_placeholder="res://widgets/transition.tscn"]

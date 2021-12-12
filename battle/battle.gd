@@ -192,13 +192,15 @@ func apply_attack_(attacking_pokemon:PokemonModel, defending_pokemon:PokemonMode
 	yield(info_box_.set_text("%s%s used %s!" % [e, attacking_pokemon.name, move.name]), "done")
 	if move.fx:
 		var fx = move.fx.instance()
-		fx.target_position = defending_graphics.find_node("pokemon").position
+		fx.defender_graphics = defending_graphics.find_node("pokemon")
+		fx.attacker_graphics = attacking_graphics.find_node("pokemon")
+		fx.info_box = info_box_
 		add_child(fx)
-		yield(fx, "done")
+		yield(fx.play(), "done")
 		fx.queue_free()
 	
 	var damage = damage_(attacking_pokemon, defending_pokemon, move)
-	var critical = 1.0 if randf() > 0.5 else 2.0
+	var critical = 2.0 if randf() > 0.9 else 1.0
 	
 	defending_pokemon.hp -= damage * critical
 	yield(defending_graphics.find_node("stats").animate_hp(defending_pokemon.hp), "animate_hp_done")
@@ -217,6 +219,7 @@ func game_() -> void:
 	yield($tween.block(), "done")
 
 	yield(info_box_.set_text_for_confirm("Dude wants to fight!"), "done")
+	info_box_.clear_text()
 
 	apply_enemy_swap_pokemon_(0)
 	yield(self, "action_applied")

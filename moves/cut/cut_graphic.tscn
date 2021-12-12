@@ -1,0 +1,41 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://moves/cut/scissor0000.png" type="Texture" id=2]
+[ext_resource path="res://moves/cut/scissor0004.png" type="Texture" id=3]
+[ext_resource path="res://moves/cut/scissor0003.png" type="Texture" id=4]
+[ext_resource path="res://moves/cut/cut.wav" type="AudioStream" id=5]
+[ext_resource path="res://moves/cut/scissor0002.png" type="Texture" id=6]
+[ext_resource path="res://moves/cut/scissor0005.png" type="Texture" id=7]
+[ext_resource path="res://moves/cut/scissor0007.png" type="Texture" id=8]
+[ext_resource path="res://moves/cut/scissor0001.png" type="Texture" id=9]
+[ext_resource path="res://moves/cut/scissor0006.png" type="Texture" id=10]
+[ext_resource path="res://moves/fire/burn_graphic.gd" type="Script" id=11]
+[ext_resource path="res://moves/hit.wav" type="AudioStream" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[node name="cut_graphic" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+frame = 6
+playing = true
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "fx"
+
+[node name="audio_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+pitch_scale = 2.5
+autoplay = true
+bus = "fx"
