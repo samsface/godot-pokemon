@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/cancel.wav-8d2e4ef5c6bea9ad38de11776eb98396.sample"
+path="res://.import/faint.wav-5096c92b1b51d62a3214cc65c9bf21e6.sample"
 
 [deps]
 
-source_file="res://sounds/cancel.wav"
-dest_files=[ "res://.import/cancel.wav-8d2e4ef5c6bea9ad38de11776eb98396.sample" ]
+source_file="res://pokemon/sounds/faint.wav"
+dest_files=[ "res://.import/faint.wav-5096c92b1b51d62a3214cc65c9bf21e6.sample" ]
 
 [params]
 

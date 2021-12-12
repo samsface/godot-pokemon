@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/transition.wav-33aeaaf96170b955ee10a48a986e97d5.sample"
+path="res://.import/activate.wav-73736268882047de91169d1f7a2898d8.sample"
 
 [deps]
 
-source_file="res://sounds/transition.wav"
-dest_files=[ "res://.import/transition.wav-33aeaaf96170b955ee10a48a986e97d5.sample" ]
+source_file="res://widgets/sounds/activate.wav"
+dest_files=[ "res://.import/activate.wav-73736268882047de91169d1f7a2898d8.sample" ]
 
 [params]
 

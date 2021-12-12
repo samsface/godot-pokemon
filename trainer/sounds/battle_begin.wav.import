@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/enter.wav-fff35254b0c35eb2f4ee5c316df67dda.sample"
+path="res://.import/battle_begin.wav-bbb5030019ecfd7fbe5b5a76e0db250e.sample"
 
 [deps]
 
-source_file="res://sounds/enter.wav"
-dest_files=[ "res://.import/enter.wav-fff35254b0c35eb2f4ee5c316df67dda.sample" ]
+source_file="res://trainer/sounds/battle_begin.wav"
+dest_files=[ "res://.import/battle_begin.wav-bbb5030019ecfd7fbe5b5a76e0db250e.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/battle_begin.wav-72b31749d290cae190a9d5361e683e95.sample"
+path="res://.import/transition.wav-a8d921b8f56bd7d0af615c73ec248c97.sample"
 
 [deps]
 
-source_file="res://sounds/battle_begin.wav"
-dest_files=[ "res://.import/battle_begin.wav-72b31749d290cae190a9d5361e683e95.sample" ]
+source_file="res://widgets/sounds/transition.wav"
+dest_files=[ "res://.import/transition.wav-a8d921b8f56bd7d0af615c73ec248c97.sample" ]
 
 [params]
 

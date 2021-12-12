@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/melee.wav-6e7740771f5c9ef4e14d143e46f0839d.sample"
+path="res://.import/enter.wav-d59824a8e6c43043c08bfce7b87d5022.sample"
 
 [deps]
 
-source_file="res://sounds/melee.wav"
-dest_files=[ "res://.import/melee.wav-6e7740771f5c9ef4e14d143e46f0839d.sample" ]
+source_file="res://pokemon/sounds/enter.wav"
+dest_files=[ "res://.import/enter.wav-d59824a8e6c43043c08bfce7b87d5022.sample" ]
 
 [params]
 

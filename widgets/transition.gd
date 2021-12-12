@@ -6,7 +6,7 @@ func start():
 	var bitmap := BitMap.new()
 	bitmap.create(Vector2(10, 9))
 	
-	var head := Vector2(10, 0)
+	var head := Vector2(9, 0)
 	var dir := Vector2.LEFT
 	
 	while true:

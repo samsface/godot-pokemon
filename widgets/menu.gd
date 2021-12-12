@@ -33,15 +33,15 @@ func clear() -> void:
 
 func _ready() -> void:
 	activate_sound_ = AudioStreamPlayer.new()
-	activate_sound_.stream = preload("res://sounds/activate.wav")
+	activate_sound_.stream = preload("res://widgets/sounds/activate.wav")
 	add_child(activate_sound_)
 	
 	select_sound_ = AudioStreamPlayer.new()
-	select_sound_.stream = preload("res://sounds/select.wav")
+	select_sound_.stream = preload("res://widgets/sounds/select.wav")
 	add_child(select_sound_)
 	
 	cancel_sound_ = AudioStreamPlayer.new()
-	cancel_sound_.stream = preload("res://sounds/cancel.wav")
+	cancel_sound_.stream = preload("res://widgets/sounds/cancel.wav")
 	add_child(cancel_sound_)
 
 	for path in menu_items:

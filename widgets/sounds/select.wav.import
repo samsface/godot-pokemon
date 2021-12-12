@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/faint.wav-b942f82045de59e38ebfb79d57786809.sample"
+path="res://.import/select.wav-d1deec991a129948e75912751fc854b6.sample"
 
 [deps]
 
-source_file="res://sounds/faint.wav"
-dest_files=[ "res://.import/faint.wav-b942f82045de59e38ebfb79d57786809.sample" ]
+source_file="res://widgets/sounds/select.wav"
+dest_files=[ "res://.import/select.wav-d1deec991a129948e75912751fc854b6.sample" ]
 
 [params]
 

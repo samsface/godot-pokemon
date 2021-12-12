@@ -1,6 +1,5 @@
 extends Node2D
 
-
 onready var info = find_node("info")
 
 func _ready():

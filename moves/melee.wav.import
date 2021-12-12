@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/jump.wav-63d72944e2f01652b323ac239fd6a06d.sample"
+path="res://.import/melee.wav-b05ab96396284934a370e59e0f43f34b.sample"
 
 [deps]
 
-source_file="res://sounds/jump.wav"
-dest_files=[ "res://.import/jump.wav-63d72944e2f01652b323ac239fd6a06d.sample" ]
+source_file="res://moves/melee.wav"
+dest_files=[ "res://.import/melee.wav-b05ab96396284934a370e59e0f43f34b.sample" ]
 
 [params]
 
