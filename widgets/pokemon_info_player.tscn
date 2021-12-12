@@ -14,6 +14,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -9.0
+margin_top = -17.0
+margin_right = 72.0
+margin_bottom = 26.0
+color = Color( 0.6, 0.6, 0.6, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="tween" type="Tween" parent="."]
 script = ExtResource( 7 )
 

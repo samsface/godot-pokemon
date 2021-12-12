@@ -5,20 +5,21 @@
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
-uniform float value : hint_range(0.0, 1.0);
-
 void fragment()
 {
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
-	
-	vec3 rgb = value < 0.5 ? color.rgb : 1.0 - color.rgb;
-	
-	COLOR = vec4(rgb, color.a);
+	vec2 uv = SCREEN_UV;
+
+	vec4 blur  = texture(SCREEN_TEXTURE, uv, 3);
+	vec4 clear = texture(SCREEN_TEXTURE, uv, 0);
+	clear.a = sin((uv.y * 0.001 * 500.0) * 4000.0);
+
+	vec4 color = mix(blur, clear, blur.r);
+
+	COLOR = color;
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/value = 0.0
 
 [node name="invert" type="ColorRect"]
 material = SubResource( 2 )
