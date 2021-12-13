@@ -12,8 +12,12 @@ level = 1
 hp = 15
 max_hp = 20
 xp = 10
+exp_stat = 1
 attack = 1
 defense = 1
 speed = 1
+wild = false
 moves = [ ExtResource( 2 ) ]
+moves_to_learn = {
+}
 battle_graphics = ExtResource( 3 )

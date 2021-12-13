@@ -28,8 +28,11 @@ func faint():
 	tween_.interpolate_property(self, "position:y", null, 200, 0.5, Tween.TRANS_QUAD)
 	return tween_.block()
 	
-func exp_gained():
-	$exp.play()
+func level_up():
+	$level_up.play()
+
+func learn():
+	$learn.play()
 
 func enter():
 	$enter.pitch_scale = 1.0 + rand_range(-0.3, 0.9)

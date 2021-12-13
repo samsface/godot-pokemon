@@ -130,6 +130,12 @@ func apply_player_swap_pokemon_(pokemon_idx:int) -> void:
 func apply_enemy_swap_pokemon_(pokemon_idx:int) -> void:
 	apply_swap_pokemon_(enemy, pokemon_idx, get_node("enemy"))
 
+func invalidate_attack_menu_(pokemon) -> void:
+	fight_.clear()
+
+	for move in pokemon.moves:
+		fight_.add_text_menu_item(move.name)
+
 func apply_swap_pokemon_(trainer:TrainerModel, pokemon_idx:int, graphics:Node) -> void:
 	if trainer.pokemon.size() <= pokemon_idx:
 		return
@@ -164,10 +170,7 @@ func apply_swap_pokemon_(trainer:TrainerModel, pokemon_idx:int, graphics:Node) -
 	graphics.find_node("stats").set_from_pokemon(pokemon)
 	
 	if trainer.is_player:
-		fight_.clear()
-
-		for move in pokemon.moves:
-			fight_.add_text_menu_item(move.name)
+		invalidate_attack_menu_(pokemon)
 	
 	yield(graphics.pokemon.enter(), "done")
 
@@ -254,8 +257,20 @@ func game_() -> void:
 			yield(enemy_graphics_.get_pokemon().faint(), "done")
 			yield(info_box_.set_text_for_confirm("Enemy %s fainted!" % enemy.active_pokemon.name), "done")
 
-			player_graphics_.pokemon.exp_gained()
-			yield(info_box_.set_text_for_confirm("%s gained 50 EXP." % player.active_pokemon.name), "done")
+			var last_level = player.active_pokemon.level
+			player.active_pokemon.xp += enemy.active_pokemon.get_exp_if_beat()
+			yield(info_box_.set_text_for_confirm("%s gained %d EXP." % [player.active_pokemon.name, enemy.active_pokemon.get_exp_if_beat()]), "done")
+			
+			if last_level != player.active_pokemon.level:
+				player_graphics_.pokemon.level_up()
+				player_graphics_.stats.set_from_pokemon(player.active_pokemon)
+				yield(info_box_.set_text_for_confirm("%s leveled up!" % [player.active_pokemon.name]), "done")
+				var move_to_learn = player.active_pokemon.moves_to_learn.get(player.active_pokemon.level)
+				if move_to_learn:
+					player_graphics_.pokemon.learn()
+					yield(info_box_.set_text_for_confirm("%s learnt %s!" % [player.active_pokemon.name, move_to_learn.name]), "done")
+					player.active_pokemon.moves.push_back(move_to_learn)
+					invalidate_attack_menu_(player.active_pokemon)
 
 			if enemy.is_dead():
 				yield(info_box_.set_text_for_confirm("%s is defeated!" % enemy.name), "done")

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/jump.wav-d2a075371592709e281430c738b05862.sample"
+path="res://.import/learn.wav-ec45b976a3d22c4f0720733121b04f3c.sample"
 
 [deps]
 
-source_file="res://pokemon/horns/jump.wav"
-dest_files=[ "res://.import/jump.wav-d2a075371592709e281430c738b05862.sample" ]
+source_file="res://pokemon/horns/learn.wav"
+dest_files=[ "res://.import/learn.wav-ec45b976a3d22c4f0720733121b04f3c.sample" ]
 
 [params]
 
