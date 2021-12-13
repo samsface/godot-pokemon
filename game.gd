@@ -4,9 +4,9 @@ onready var info = find_node("info")
 
 func _ready():
 	while true:
-		yield(info.set_text_for_confirm("Press [SPACE] to confirm!"), "done")
-		yield(info.set_text_for_confirm("Press [P] to pause"), "done")
-		yield(info.set_text_for_confirm("Use the arrow keys to navigate menus."), "done")
+		yield(info.set_text_for_confirm("Press [SPACE] to confirm. OK?"), "done")
+		yield(info.set_text_for_confirm("Press [P] to pause. OK?"), "done")
+		yield(info.set_text_for_confirm("Use the arrow keys to navigate menus. OK?"), "done")
 		
 		yield(info.set_text_for_confirm("Are you ready to be a pokemon master?"), "done")
 		info.clear_text()

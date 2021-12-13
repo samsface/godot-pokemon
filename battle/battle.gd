@@ -217,8 +217,12 @@ func game_() -> void:
 	player_graphics_.trainer.begin($tween)
 	enemy_graphics_.trainer.begin($tween)
 	yield($tween.block(), "done")
+	
+	yield($tween.block(), "done")
+	for line in enemy.begin_speach:
+		yield(info_box_.set_text_for_confirm(line), "done")
 
-	yield(info_box_.set_text_for_confirm("Dude wants to fight!"), "done")
+	yield(info_box_.set_text_for_confirm("%s wants to fight!" % enemy.name), "done")
 	info_box_.clear_text()
 
 	apply_enemy_swap_pokemon_(0)
@@ -294,6 +298,7 @@ func game_() -> void:
 				yield(self, "action_applied")
 
 	if enemy.is_dead():
+		player_graphics_.stats.visible = false
 		enemy_graphics_.trainer.enter($tween)
 		yield($tween.block(), "done")
 		for line in enemy.loose_speach:

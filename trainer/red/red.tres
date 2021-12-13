@@ -3,16 +3,16 @@
 [ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=2]
 [ext_resource path="res://moves/electric/thunderbolt.tres" type="Resource" id=3]
-[ext_resource path="res://pokemon/beer/beer_battle_graphic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://pokemon/hat/hat_battle_graphic.tscn" type="PackedScene" id=4]
 [ext_resource path="res://trainer/red/red_trainer_graphic.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id=1]
 resource_local_to_scene = true
 script = ExtResource( 2 )
-name = "Beer"
-level = 40
-hp = 15
-max_hp = 20
+name = "Wizard Hat"
+level = 1
+hp = 5
+max_hp = 5
 xp = 10
 attack = 1
 defense = 1
@@ -23,8 +23,9 @@ battle_graphics = ExtResource( 4 )
 [resource]
 script = ExtResource( 1 )
 name = "Red"
-pokemon = [ SubResource( 2 ) ]
+pokemon = [ SubResource( 1 ) ]
 items = [  ]
 is_player = false
-loose_speach = [ "I lost, that sucks!", "I should of tried harder..." ]
+begin_speach = [ "You want to fight my hat?", "You don't stand a chance!" ]
+loose_speach = [ "So it's true what they say.", "The horn is greater...", "...than the wizard hat." ]
 battle_graphic = ExtResource( 5 )

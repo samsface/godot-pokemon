@@ -1,10 +1,19 @@
 extends Node2D
 
 var tween_:TweenEx
+var tween__:Tween
 
 func _ready()-> void:
 	tween_ = TweenEx.new()
+	tween__ = Tween.new()
 	add_child(tween_)
+	add_child(tween__)
+	
+	tween__.repeat = true
+	$front.rotation_degrees = 5
+	tween__.interpolate_property($front, "rotation_degrees", 5,  -5, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.0)
+	tween__.interpolate_property($front, "rotation_degrees", -5, 5, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 1.0)
+	tween__.start()
 
 func show_back():
 	$front.visible = false

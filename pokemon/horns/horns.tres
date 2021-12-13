@@ -1,17 +1,17 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=1]
-[ext_resource path="res://moves/electric/thunderbolt.tres" type="Resource" id=2]
-[ext_resource path="res://pokemon/hat/hat_battle_graphic.tscn" type="PackedScene" id=3]
+[ext_resource path="res://moves/cut/cut.tres" type="Resource" id=2]
+[ext_resource path="res://pokemon/horns/horns_battle_graphic.tscn" type="PackedScene" id=3]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource( 1 )
-name = "Wizard Hat"
+name = "Horns"
 level = 1
 hp = 15
-max_hp = 20
-xp = 10
+max_hp = 15
+xp = 0
 attack = 1
 defense = 1
 speed = 1
