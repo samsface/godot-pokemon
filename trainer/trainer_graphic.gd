@@ -10,9 +10,9 @@ func begin(tween:TweenEx) -> void:
 	if $front.visible:
 		tween.step_property($enter, "playing", false, true, 1.0)
 	tween.step_property($front, "modulate:a", 1.0, 0.0, 1.0)
-	tween.step_property($front, "modulate:a", 0.0, 1.0, 1.1)
+	tween.step_property($front, "modulate:a", 0.0, 1.0, 1.2)
 	tween.step_property($back, "modulate:a", 1.0, 0.0, 1.0)
-	tween.step_property($back, "modulate:a", 0.0, 1.0, 1.1)
+	tween.step_property($back, "modulate:a", 0.0, 1.0, 1.2)
 	tween.start()
 	
 func exit(tween:TweenEx) -> void:
