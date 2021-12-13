@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://widgets/theme.tres" type="Theme" id=1]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game.gd" type="Script" id=3]
 [ext_resource path="res://music/mars.mp3" type="AudioStream" id=4]
+[ext_resource path="res://trainer/skull/skull.tres" type="Resource" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
@@ -16,6 +17,13 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 160.0
 margin_bottom = 144.0
+
+[node name="battle2" parent="." instance_placeholder="res://battle/battle.tscn"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 160.0
+margin_bottom = 144.0
+enemy = ExtResource( 6 )
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

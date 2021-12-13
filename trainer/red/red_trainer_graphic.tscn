@@ -3,7 +3,7 @@
 [ext_resource path="res://trainer/trainer_graphic.gd" type="Script" id=1]
 [ext_resource path="res://trainer/sounds/battle_begin.wav" type="AudioStream" id=2]
 [ext_resource path="res://trainer/red/char02_0000.png" type="Texture" id=3]
-[ext_resource path="res://pokemon/hat/front.png" type="Texture" id=4]
+[ext_resource path="res://pokemon/wizard_hat/front.png" type="Texture" id=4]
 
 [node name="blue_trainer_graphic" type="Node2D"]
 script = ExtResource( 1 )

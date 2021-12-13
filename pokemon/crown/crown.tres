@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=1]
+[ext_resource path="res://moves/electric/thunderbolt.tres" type="Resource" id=2]
+[ext_resource path="res://pokemon/crown/crown_battle_graphic.tscn" type="PackedScene" id=3]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource( 1 )
+name = "Crown"
+level = 1
+hp = 15
+max_hp = 20
+xp = 10
+attack = 1
+defense = 1
+speed = 1
+moves = [ ExtResource( 2 ) ]
+battle_graphics = ExtResource( 3 )

@@ -254,6 +254,7 @@ func game_() -> void:
 			yield(enemy_graphics_.get_pokemon().faint(), "done")
 			yield(info_box_.set_text_for_confirm("Enemy %s fainted!" % enemy.active_pokemon.name), "done")
 
+			player_graphics_.pokemon.exp_gained()
 			yield(info_box_.set_text_for_confirm("%s gained 50 EXP." % player.active_pokemon.name), "done")
 
 			if enemy.is_dead():
@@ -303,5 +304,8 @@ func game_() -> void:
 		yield($tween.block(), "done")
 		for line in enemy.loose_speach:
 			yield(info_box_.set_text_for_confirm(line), "done")
+
+	enemy.active_pokemon = null
+	player.active_pokemon = null
 
 	emit_signal("done")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/back.png-29f724ca601b8eee0e4a0ce01bb1b2e5.stex"
+path="res://.import/char02_0000.png-fc920a2c1e5d67899ddcf1e0a5a4dd59.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pokemon/hat/back.png"
-dest_files=[ "res://.import/back.png-29f724ca601b8eee0e4a0ce01bb1b2e5.stex" ]
+source_file="res://trainer/skull/char02_0000.png"
+dest_files=[ "res://.import/char02_0000.png-fc920a2c1e5d67899ddcf1e0a5a4dd59.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/front.png-e70fe95b47278049e557e5d0c3070f18.stex"
+path="res://.import/wallSpike02_0000.png-74f6b2c4cfac907e4c806372b839b672.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pokemon/hat/front.png"
-dest_files=[ "res://.import/front.png-e70fe95b47278049e557e5d0c3070f18.stex" ]
+source_file="res://moves/spike/wallSpike02_0000.png"
+dest_files=[ "res://.import/wallSpike02_0000.png-74f6b2c4cfac907e4c806372b839b672.stex" ]
 
 [params]
 
