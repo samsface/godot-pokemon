@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "cut"
+name = "CUT"
 power = 1
 accuracy = 1.0
 type = 0

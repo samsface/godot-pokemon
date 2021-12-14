@@ -3,12 +3,11 @@
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=1]
 [ext_resource path="res://moves/cut/cut.tres" type="Resource" id=2]
 [ext_resource path="res://pokemon/horns/horns_battle_graphic.tscn" type="PackedScene" id=3]
-[ext_resource path="res://moves/chair/chair.tres" type="Resource" id=4]
+[ext_resource path="res://moves/horn/horn.tres" type="Resource" id=4]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource( 1 )
-name = "Horns"
+name = "HORN"
 level = 1
 hp = 15
 max_hp = 15
@@ -18,8 +17,8 @@ attack = 1
 defense = 1
 speed = 1
 wild = false
-moves = [ ExtResource( 2 ) ]
+moves = [ ExtResource( 4 ) ]
 moves_to_learn = {
-2: ExtResource( 4 )
+2: ExtResource( 2 )
 }
 battle_graphics = ExtResource( 3 )

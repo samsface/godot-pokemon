@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://moves/move_model.gd" type="Script" id=1]
+[ext_resource path="res://moves/horn/horn_graphic.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "HORN"
+power = 1
+accuracy = 1.0
+type = 0
+fx = ExtResource( 2 )

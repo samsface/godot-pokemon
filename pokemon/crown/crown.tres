@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://pokemon/pokemon_model.gd" type="Script" id=1]
-[ext_resource path="res://moves/electric/thunderbolt.tres" type="Resource" id=2]
+[ext_resource path="res://moves/fire/burn.tres" type="Resource" id=2]
 [ext_resource path="res://pokemon/crown/crown_battle_graphic.tscn" type="PackedScene" id=3]
 
 [resource]
@@ -12,8 +12,12 @@ level = 1
 hp = 15
 max_hp = 20
 xp = 10
+exp_stat = 1
 attack = 1
 defense = 1
 speed = 1
+wild = false
 moves = [ ExtResource( 2 ) ]
+moves_to_learn = {
+}
 battle_graphics = ExtResource( 3 )

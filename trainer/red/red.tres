@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "Red"
+name = "Cry Baby"
 pokemon = [ ExtResource( 2 ) ]
 items = [  ]
 is_player = false
-begin_speach = [ "You want to fight my hat?", "You don't stand a chance!" ]
-loose_speach = [ "So it's true what they say.", "The horn is greater...", "...than the wizard hat." ]
+begin_speach = [ "HEY! You can't talk to people like that!", "What? You want to fight me?", "... but I'm just an old woman!" ]
+loose_speach = [ "Please stop...", "Please stop ruining my son's funeral." ]
 battle_graphic = ExtResource( 5 )

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://widgets/theme.tres" type="Theme" id=1]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game.gd" type="Script" id=3]
 [ext_resource path="res://music/mars.mp3" type="AudioStream" id=4]
+[ext_resource path="res://trainer/red/red.tres" type="Resource" id=5]
 [ext_resource path="res://trainer/skull/skull.tres" type="Resource" id=6]
 
 [node name="Node2D" type="Node2D"]
@@ -17,6 +18,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 160.0
 margin_bottom = 144.0
+enemy = ExtResource( 5 )
 
 [node name="battle2" parent="." instance_placeholder="res://battle/battle.tscn"]
 anchor_right = 0.0
@@ -25,10 +27,55 @@ margin_right = 160.0
 margin_bottom = 144.0
 enemy = ExtResource( 6 )
 
+[node name="battle3" parent="." instance_placeholder="res://battle/battle.tscn"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 160.0
+margin_bottom = 144.0
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -6.0
+volume_db = -8.0
 mix_target = 2
 bus = "music"
 
 [node name="transition" parent="." instance_placeholder="res://widgets/transition.tscn"]
+
+[node name="blinders" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="ColorRect" type="ColorRect" parent="blinders"]
+margin_left = -93.0
+margin_bottom = 144.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="blinders"]
+margin_left = 160.0
+margin_right = 253.0
+margin_bottom = 144.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="blinders"]
+margin_left = -93.0
+margin_top = -144.0
+margin_right = 253.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="blinders"]
+margin_left = -93.0
+margin_top = 144.0
+margin_right = 253.0
+margin_bottom = 288.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -9,6 +9,9 @@ func start():
 	var head := Vector2(9, 0)
 	var dir := Vector2.LEFT
 	
+	yield(get_tree().create_timer(0.7), "timeout")
+	$audio.play()
+	
 	while true:
 		if bitmap.get_bit(head):
 			break
@@ -28,5 +31,8 @@ func start():
 
 		head += dir
 	
+	yield(get_tree().create_timer(0.7), "timeout")
+	
 	emit_signal("done")
+	queue_free()
 
