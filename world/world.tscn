@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=1]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://world/player.gd" type="Script" id=12]
 [ext_resource path="res://trainer/dead_man/dead_man.tres" type="Resource" id=13]
 [ext_resource path="res://world/npc.tscn" type="PackedScene" id=14]
+[ext_resource path="res://world/interactable.tscn" type="PackedScene" id=15]
 
 [sub_resource type="SpriteFrames" id=45]
 animations = [ {
@@ -29,7 +30,10 @@ animations = [ {
 extents = Vector2( 52.5, 26.5 )
 
 [sub_resource type="RayShape2D" id=47]
-length = 63.9991
+length = 53.0
+
+[sub_resource type="CircleShape2D" id=49]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id=48]
 radius = 16.0
@@ -121,6 +125,33 @@ position = Vector2( 105, 56 )
 position = Vector2( 2.5, -13.5 )
 shape = SubResource( 46 )
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="chairs"]
+position = Vector2( 108, 31 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="chairs"]
+position = Vector2( -135, -3 )
+rotation = 1.5708
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="chairs"]
+position = Vector2( -134, 102 )
+rotation = 1.5708
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="chairs"]
+position = Vector2( -134, 102 )
+rotation = 1.5708
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="chairs"]
+position = Vector2( -52, 114 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="chairs"]
+position = Vector2( -94, -67 )
+shape = SubResource( 46 )
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="chairs"]
 position = Vector2( 2.5, 61.5 )
 shape = SubResource( 46 )
@@ -133,6 +164,23 @@ trainer = ExtResource( 9 )
 rotation = -1.5708
 shape = SubResource( 47 )
 
+[node name="rude_man" parent="." instance=ExtResource( 14 )]
+position = Vector2( 40, 35 )
+trainer = ExtResource( 8 )
+
+[node name="los" type="CollisionShape2D" parent="rude_man"]
+shape = SubResource( 47 )
+
+[node name="dead_man_chew" parent="." instance=ExtResource( 15 )]
+position = Vector2( 15, 75 )
+text = "You want to fight the dead man. But he is dead.
+You settle with chewing his femur.
+You notice an organ in the corner of the church.q"
+
+[node name="trigger" type="CollisionShape2D" parent="dead_man_chew"]
+position = Vector2( 0, 7 )
+shape = SubResource( 49 )
+
 [node name="dead_man" parent="." instance=ExtResource( 14 )]
 position = Vector2( 11, 82 )
 trainer = ExtResource( 13 )
@@ -142,14 +190,9 @@ passive = true
 position = Vector2( 2, 54 )
 shape = SubResource( 48 )
 
-[node name="rude_man" parent="." instance=ExtResource( 14 )]
-position = Vector2( 40, 35 )
-trainer = ExtResource( 8 )
-
-[node name="los2" type="CollisionShape2D" parent="rude_man"]
-shape = SubResource( 47 )
-
 [node name="info_box" parent="." instance=ExtResource( 2 )]
 visible = false
 
 [node name="transition" parent="." instance_placeholder="res://widgets/transition.tscn"]
+
+[connection signal="trigger" from="dead_man_chew" to="." method="_on_dead_man_chew_trigger"]

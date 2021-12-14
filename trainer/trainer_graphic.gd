@@ -5,7 +5,9 @@ onready var front_position_:Vector2 = $front.position
 onready var back_position_:Vector2 = $back.position
 
 func begin(tween:TweenEx) -> void:
+	$front.position.x = - 40
 	tween.interpolate_property($front, "position:x", -40, front_position_.x, 1.0)
+	$back.position.x = 180
 	tween.interpolate_property($back,  "position:x", 180, back_position_.x, 1.0)
 	if $front.visible:
 		tween.step_property($enter, "playing", false, true, 1.0)

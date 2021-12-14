@@ -4,3 +4,5 @@
 
 [node name="interactable" type="Area2D"]
 script = ExtResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

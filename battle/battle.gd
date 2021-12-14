@@ -43,7 +43,7 @@ func _ready():
 	action_menu_.connect("item", self, "push_menu_", [items_])
 	action_menu_.connect("run", self, "_on_run")
 	action_menu_.connect("pokemon", self, "push_menu_", [pokemon_])
-	action_menu_.connect("pokemon", pokemon_.info, "set_text", ["Bring out which POKeMON?"])
+	action_menu_.connect("pokemon", pokemon_.info, "set_text", ["Bring out which HATeMON?"])
 
 	fight_.connect("activated", self, "_on_attack_activated")
 	fight_.set_process_input(false)
@@ -279,7 +279,7 @@ func game_() -> void:
 			var next_enemy_pokemon_idx = enemy.pokemon.find(enemy.active_pokemon) + 1
 			var next_enemy_pokemon = enemy.pokemon[next_enemy_pokemon_idx]
 			yield(info_box_.set_text("%s is about to use %s." % [enemy.name, next_enemy_pokemon.name]), "done")
-			yield(info_box_.set_text("Will %s change pokemon?" % [player.name], 0.0), "done")
+			yield(info_box_.set_text("Will %s change HATeMON?" % [player.name], 0.0), "done")
 
 			push_menu_(yes_no_menu_)
 			var action:Action = yield(self, "action_choosen")
@@ -317,6 +317,10 @@ func game_() -> void:
 		player_graphics_.stats.visible = false
 		enemy_graphics_.trainer.enter($tween)
 		yield($tween.block(), "done")
+		
+		var battle_loose = enemy.battle_loose
+		for line in battle_loose.text.split("\n"):
+			yield(info_box_.set_text_for_confirm(line), "done")
 
 
 	enemy.active_pokemon = null

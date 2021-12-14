@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=9 format=2]
+[gd_resource type="Resource" load_steps=11 format=2]
 
 [ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
 [ext_resource path="res://trainer/dead_man/dead_man_battle_graphic.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://trainer/dead_man/dead_man_world_encounter.gd" type="Script" id=5]
 [ext_resource path="res://trainer/text_model.gd" type="Script" id=6]
 [ext_resource path="res://trainer/dead_man/dead_man_world_loose.gd" type="Script" id=7]
+[ext_resource path="res://pokemon/beer/beer.tres" type="Resource" id=8]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 6 )
@@ -14,14 +15,19 @@ text = "On my grave it will say:
 Died saving 100 oprhans from a burning building...
 And KICKED  A DUMB PUGS ASS!"
 
+[sub_resource type="Resource" id=2]
+script = ExtResource( 6 )
+text = "God is going to be so upset with me."
+
 [resource]
 script = ExtResource( 1 )
 name = "Annoying Dead Man"
-pokemon = [ ExtResource( 3 ) ]
+pokemon = [ ExtResource( 3 ), ExtResource( 8 ) ]
 items = [  ]
 is_player = false
 world_encounter = ExtResource( 5 )
 battle_begin = SubResource( 1 )
+battle_loose = SubResource( 2 )
 world_loose = ExtResource( 7 )
 battle_graphic = ExtResource( 2 )
 world_graphic = ExtResource( 4 )
