@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "TextModel",
 "language": "GDScript",
-"path": "res://text_model.gd"
+"path": "res://trainer/text_model.gd"
 }, {
 "base": "Node2D",
 "class": "TrainerGraphic",
@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="HATeMON - A Pug's Tail"
-run/main_scene="res://world.tscn"
+run/main_scene="res://world/world.tscn"
 config/icon="res://icon.png"
 
 [autoload]

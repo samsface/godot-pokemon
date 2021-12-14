@@ -8,6 +8,7 @@
 script = ExtResource( 5 )
 
 [node name="sprite" parent="." instance_placeholder="res://trainer/red/world_graphic.tscn"]
+frame = 0
 
 [node name="spot" type="Label" parent="."]
 visible = false

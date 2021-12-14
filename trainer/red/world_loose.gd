@@ -11,10 +11,11 @@ func _ready():
 	info_box.visible = true
 	
 	#$success.play()
-	#trainer.get_node("hat").visible = false
-	yield(info_box.set_text_for_confirm("You took the Wizard Hat!"), "done")
 
-	trainer.monitoring = false
+	yield(info_box.set_text_for_confirm("You took the Wizard Hat!"), "done")
+	player.trainer.pokemon.push_back(trainer.trainer.pokemon[0])
+	trainer.trainer.pokemon[0].hp = trainer.trainer.pokemon[0].max_hp
+
 	player.pause_controls = false
 	info_box.clear_text()
 	info_box.visible = false
