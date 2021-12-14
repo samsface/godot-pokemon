@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://trainer/king/king.tres" type="Resource" id=1]
 [ext_resource path="res://battle/graphic.gd" type="Script" id=2]
@@ -14,23 +14,11 @@
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=17]
 [ext_resource path="res://widgets/pokemon_menu.tscn" type="PackedScene" id=18]
 
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_left = 1.0
-content_margin_right = 1.0
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id=2]
-content_margin_left = 1.0
-content_margin_right = 1.0
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-
 [node name="battle" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
-color = Color( 0.6, 0.6, 0.6, 1 )
+color = Color( 0.113725, 0.368627, 0.482353, 1 )
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -74,7 +62,6 @@ margin_right = 160.283
 margin_bottom = 144.051
 rect_min_size = Vector2( 0, 48 )
 size_flags_vertical = 10
-custom_styles/panel = SubResource( 1 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,10 +69,8 @@ __meta__ = {
 menu_items = [ NodePath("m/m/rows/col_1/fight"), NodePath("m/m/rows/col_1/item"), NodePath("m/m/rows/col_2/pokemon"), NodePath("m/m/rows/col_2/run") ]
 
 [node name="m" type="NinePatchRect" parent="action_menu"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 98.9998
-margin_bottom = 47.0
+margin_right = 99.9998
+margin_bottom = 48.0
 texture = ExtResource( 11 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -106,12 +91,12 @@ __meta__ = {
 [node name="rows" type="HBoxContainer" parent="action_menu/m/m"]
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 91.0
-margin_bottom = 40.0
+margin_right = 93.0
+margin_bottom = 42.0
 
 [node name="col_1" type="VBoxContainer" parent="action_menu/m/m/rows"]
 margin_right = 47.0
-margin_bottom = 34.0
+margin_bottom = 36.0
 
 [node name="fight" parent="action_menu/m/m/rows/col_1" instance=ExtResource( 7 )]
 capitalize = true
@@ -127,12 +112,12 @@ text = "item"
 [node name="col_2" type="VBoxContainer" parent="action_menu/m/m/rows"]
 margin_left = 51.0
 margin_right = 84.0
-margin_bottom = 34.0
+margin_bottom = 36.0
 
 [node name="pokemon" parent="action_menu/m/m/rows/col_2" instance=ExtResource( 7 )]
 margin_right = 33.0
 capitalize = true
-text = "pkm"
+text = "hat"
 
 [node name="run" parent="action_menu/m/m/rows/col_2" instance=ExtResource( 7 )]
 margin_top = 17.0
@@ -149,17 +134,14 @@ margin_right = 160.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 48 )
 size_flags_vertical = 10
-custom_styles/panel = SubResource( 2 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="m" type="NinePatchRect" parent="fight_menu"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 125.0
-margin_bottom = 47.0
+margin_right = 126.0
+margin_bottom = 48.0
 texture = ExtResource( 11 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -180,8 +162,8 @@ __meta__ = {
 [node name="col_1" type="VBoxContainer" parent="fight_menu/m/m"]
 margin_left = 6.0
 margin_top = 4.0
-margin_right = 118.0
-margin_bottom = 40.0
+margin_right = 120.0
+margin_bottom = 42.0
 custom_constants/separation = -5
 
 [node name="yes_no_menu" type="PanelContainer" parent="."]
@@ -190,7 +172,6 @@ margin_top = 61.0
 margin_right = 46.0
 margin_bottom = 97.0
 size_flags_vertical = 10
-custom_styles/panel = SubResource( 2 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -247,7 +228,6 @@ margin_right = 160.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 0, 48 )
 size_flags_vertical = 10
-custom_styles/panel = SubResource( 1 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false

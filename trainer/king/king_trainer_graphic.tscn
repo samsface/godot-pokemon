@@ -3,7 +3,7 @@
 [ext_resource path="res://trainer/trainer_graphic.gd" type="Script" id=1]
 [ext_resource path="res://trainer/sounds/battle_begin.wav" type="AudioStream" id=2]
 [ext_resource path="res://trainer/red/char02_0000.png" type="Texture" id=3]
-[ext_resource path="res://trainer/king/char01_0000.png" type="Texture" id=4]
+[ext_resource path="res://trainer/rude_man/char01_0000.png" type="Texture" id=4]
 [ext_resource path="res://trainer/king/crown0003.png" type="Texture" id=5]
 
 [node name="king_trainer_graphic" type="Node2D"]

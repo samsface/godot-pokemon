@@ -28,7 +28,6 @@ margin_top = 52.0
 margin_right = 233.0
 margin_bottom = 78.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BULBASAUR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,7 +39,6 @@ margin_top = 60.0
 margin_right = 264.0
 margin_bottom = 86.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "5"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -81,4 +79,4 @@ texture = ExtResource( 6 )
 position = Vector2( -24, 0 )
 points = PoolVector2Array( 0, 0, 48, 0 )
 width = 2.0
-default_color = Color( 0.133333, 0.494118, 0.192157, 1 )
+default_color = Color( 0.545098, 0.168627, 0.164706, 1 )

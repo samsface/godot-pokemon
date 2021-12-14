@@ -2,7 +2,8 @@
 
 [ext_resource path="res://widgets/Pokemon Classic.ttf" type="DynamicFontData" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.113725, 0.368627, 0.482353, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -12,5 +13,6 @@ font_data = ExtResource( 1 )
 
 [resource]
 default_font = SubResource( 1 )
+Label/colors/font_color = Color( 0.0392157, 0.0980392, 0.152941, 1 )
 PanelContainer/styles/panel = SubResource( 2 )
-RichTextLabel/colors/default_color = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/default_color = Color( 0.0392157, 0.0980392, 0.152941, 1 )

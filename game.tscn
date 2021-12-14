@@ -5,7 +5,7 @@
 [ext_resource path="res://game.gd" type="Script" id=3]
 [ext_resource path="res://music/mars.mp3" type="AudioStream" id=4]
 [ext_resource path="res://trainer/red/red.tres" type="Resource" id=5]
-[ext_resource path="res://trainer/skull/skull.tres" type="Resource" id=6]
+[ext_resource path="res://trainer/rude_man/skull.tres" type="Resource" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )

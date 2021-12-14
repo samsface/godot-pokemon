@@ -46,15 +46,18 @@ func _process(delta:float):
 		ray_.rotation = moves_.front().angle()
 		ray_.force_raycast_update()
 		if ray_.is_colliding():
-			$animation.animation = animation_[moves_.front()]
+			#$animation.animation = animation_[moves_.front()]
 			moves_.pop_front()
 		else:
 			moving_to_ = floor_vec2(global_position) + moves_.front() * tile_size
 
 	if not moves_.empty():
-		$animation.animation = animation_[moves_.front()]
+		#$animation.animation = animation_[moves_.front()]
 		global_position = global_position.move_toward(moving_to_, delta * 20.0)
 		if global_position.distance_to(moving_to_) <= 0.1:
 			global_position = moving_to_
 			moving_to_ = null
 			moves_.pop_front()
+
+		
+		

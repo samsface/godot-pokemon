@@ -2,7 +2,7 @@
 
 [ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
 [ext_resource path="res://pokemon/spikey/spikey.tres" type="Resource" id=2]
-[ext_resource path="res://trainer/skull/skull_trainer_graphic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://trainer/rude_man/skull_trainer_graphic.tscn" type="PackedScene" id=5]
 
 [resource]
 script = ExtResource( 1 )

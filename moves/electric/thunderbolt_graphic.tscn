@@ -25,6 +25,7 @@ animations = [ {
 script = ExtResource( 11 )
 
 [node name="c" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="shader" parent="c" instance=ExtResource( 5 )]
 rect_min_size = Vector2( 160, 144 )
@@ -32,7 +33,7 @@ rect_min_size = Vector2( 160, 144 )
 [node name="sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
-frame = 1
+frame = 5
 playing = true
 
 [node name="audio" type="AudioStreamPlayer" parent="."]

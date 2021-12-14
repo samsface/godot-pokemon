@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skull0000.png-08819f686d257e95a6d5acebd6593579.stex"
+path="res://.import/char04_0005.png-db53629d0f9264572d090b24e9a5e3f6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://trainer/skull/skull0000.png"
-dest_files=[ "res://.import/skull0000.png-08819f686d257e95a6d5acebd6593579.stex" ]
+source_file="res://trainer/blue/char04_0005.png"
+dest_files=[ "res://.import/char04_0005.png-db53629d0f9264572d090b24e9a5e3f6.stex" ]
 
 [params]
 
