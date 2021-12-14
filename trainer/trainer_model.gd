@@ -5,9 +5,12 @@ export(String) var name
 export(Array, Resource) var pokemon
 export(Array, Resource) var items
 export(bool) var is_player
-export(Array, String) var begin_speach
-export(Array, String) var loose_speach
+export(Resource) var world_encounter
+export(Resource) var battle_begin
+export(Resource) var battle_loose
+export(Resource) var world_loose
 export(PackedScene) var battle_graphic
+export(PackedScene) var world_graphic
 
 var active_pokemon
 

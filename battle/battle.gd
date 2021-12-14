@@ -221,8 +221,8 @@ func game_() -> void:
 	enemy_graphics_.trainer.begin($tween)
 	yield($tween.block(), "done")
 	
-	yield($tween.block(), "done")
-	for line in enemy.begin_speach:
+	var begin_battle = enemy.battle_begin
+	for line in begin_battle.text.split("\n"):
 		yield(info_box_.set_text_for_confirm(line), "done")
 
 	yield(info_box_.set_text_for_confirm("%s wants to fight!" % enemy.name), "done")
@@ -317,8 +317,7 @@ func game_() -> void:
 		player_graphics_.stats.visible = false
 		enemy_graphics_.trainer.enter($tween)
 		yield($tween.block(), "done")
-		for line in enemy.loose_speach:
-			yield(info_box_.set_text_for_confirm(line), "done")
+
 
 	enemy.active_pokemon = null
 	player.active_pokemon = null

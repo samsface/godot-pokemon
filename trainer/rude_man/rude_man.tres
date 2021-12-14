@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
+[ext_resource path="res://pokemon/spikey/spikey.tres" type="Resource" id=2]
+[ext_resource path="res://trainer/rude_man/rude_man_battle_graphic.tscn" type="PackedScene" id=3]
+[ext_resource path="res://trainer/rude_man/rude_man_world_graphic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://text_model.gd" type="Script" id=5]
+[ext_resource path="res://trainer/rude_man/rude_man_world_loose.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+text = "Please just leave. You've upset everyone."
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+text = "I heard what you said to that poor lady.
+At her own son's funeral.
+I think you should leave."
+
+[resource]
+script = ExtResource( 1 )
+name = "Rude Man"
+pokemon = [ ExtResource( 2 ) ]
+items = [  ]
+is_player = false
+world_encounter = SubResource( 1 )
+battle_begin = SubResource( 2 )
+world_loose = ExtResource( 6 )
+battle_graphic = ExtResource( 3 )
+world_graphic = ExtResource( 4 )

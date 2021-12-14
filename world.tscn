@@ -1,26 +1,18 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://trainer/church.png" type="Texture" id=1]
 [ext_resource path="res://trainer/blue/pug.png" type="Texture" id=2]
 [ext_resource path="res://player.gd" type="Script" id=3]
-[ext_resource path="res://trainer/red/char02_0000.png" type="Texture" id=4]
+[ext_resource path="res://trainer/dead_man/dead_man.tres" type="Resource" id=4]
 [ext_resource path="res://world.gd" type="Script" id=5]
-[ext_resource path="res://man.gd" type="Script" id=6]
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=7]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=8]
-[ext_resource path="res://widgets/theme.tres" type="Theme" id=9]
 [ext_resource path="res://trainer/red/red.tres" type="Resource" id=10]
 [ext_resource path="res://music/mars.mp3" type="AudioStream" id=11]
 [ext_resource path="res://pokemon/horns/level_up.wav" type="AudioStream" id=12]
-[ext_resource path="res://pokemon/horns/learn.wav" type="AudioStream" id=13]
-[ext_resource path="res://pokemon/wizard_hat/front.png" type="Texture" id=14]
-[ext_resource path="res://trainer/rude_man/f1.png" type="Texture" id=15]
-[ext_resource path="res://trainer/rude_man/f2.png" type="Texture" id=16]
-[ext_resource path="res://trainer/rude_man/skull.tres" type="Resource" id=17]
-[ext_resource path="res://trainer/rude_man/f3.png" type="Texture" id=18]
+[ext_resource path="res://trainer/rude_man/rude_man.tres" type="Resource" id=17]
 [ext_resource path="res://trainer/blue/pug2.png" type="Texture" id=19]
-[ext_resource path="res://trainer/red/f2.png" type="Texture" id=22]
-[ext_resource path="res://trainer/red/f1.png" type="Texture" id=23]
+[ext_resource path="res://world/npc.tscn" type="PackedScene" id=20]
 
 [sub_resource type="SpriteFrames" id=45]
 animations = [ {
@@ -32,26 +24,16 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=21]
 
-[sub_resource type="RayShape2D" id=42]
-length = 64.0
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 52.5, 26.5 )
 
-[sub_resource type="SpriteFrames" id=43]
-animations = [ {
-"frames": [ ExtResource( 23 ), ExtResource( 22 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="RayShape2D" id=47]
+length = 63.9991
 
-[sub_resource type="SpriteFrames" id=44]
-animations = [ {
-"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="CircleShape2D" id=48]
+radius = 16.0
 
-[node name="Node2D" type="Node2D"]
+[node name="level" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Church" type="Sprite" parent="."]
@@ -80,85 +62,46 @@ playback/repeat = true
 [node name="tween" type="Tween" parent="."]
 script = ExtResource( 7 )
 
-[node name="cry_baby" type="Area2D" parent="." groups=["trainer"]]
-position = Vector2( 60, 79 )
-script = ExtResource( 6 )
-trainer = ExtResource( 10 )
-
-[node name="body" type="Sprite" parent="cry_baby"]
-visible = false
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 4 )
-
-[node name="hat" type="Sprite" parent="cry_baby"]
-visible = false
-position = Vector2( 3.05176e-05, -10 )
-scale = Vector2( 0.109649, 0.109649 )
-texture = ExtResource( 14 )
-
-[node name="spot" type="Label" parent="cry_baby"]
-visible = false
-margin_left = 1.0
-margin_top = -20.0
-margin_right = 7.0
-margin_bottom = -6.0
-theme = ExtResource( 9 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="spot_audio" type="AudioStreamPlayer" parent="cry_baby"]
-stream = ExtResource( 13 )
-pitch_scale = 0.8
-bus = "fx"
-
-[node name="los" type="CollisionShape2D" parent="cry_baby"]
-rotation = -1.5708
-shape = SubResource( 42 )
-
-[node name="World" type="AnimatedSprite" parent="cry_baby"]
-position = Vector2( 2, 0 )
-frames = SubResource( 43 )
-playing = true
-
-[node name="spikey" type="Area2D" parent="." groups=["trainer"]]
-position = Vector2( 43.5, 45 )
-script = ExtResource( 6 )
-trainer = ExtResource( 17 )
-
-[node name="F1" type="AnimatedSprite" parent="spikey"]
-frames = SubResource( 44 )
-frame = 1
-playing = true
-
-[node name="spot" type="Label" parent="spikey"]
-visible = false
-modulate = Color( 0, 0, 0, 1 )
-margin_left = -2.0
-margin_top = -19.0
-margin_right = 38.0
-margin_bottom = -5.0
-theme = ExtResource( 9 )
-text = "!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="spot_audio" type="AudioStreamPlayer" parent="spikey"]
-stream = ExtResource( 13 )
-pitch_scale = 0.8
-bus = "fx"
-
-[node name="los" type="CollisionShape2D" parent="spikey"]
-shape = SubResource( 42 )
-
 [node name="info_box" parent="." instance=ExtResource( 8 )]
 visible = false
 
 [node name="c" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
+
+[node name="chairs" type="StaticBody2D" parent="."]
+position = Vector2( 105, 56 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chairs"]
+position = Vector2( 2.5, -13.5 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="chairs"]
+position = Vector2( 2.5, 61.5 )
+shape = SubResource( 46 )
+
+[node name="cry_baby" parent="." instance=ExtResource( 20 )]
+position = Vector2( 62, 80 )
+trainer = ExtResource( 10 )
+
+[node name="los" type="CollisionShape2D" parent="cry_baby"]
+rotation = -1.5708
+shape = SubResource( 47 )
+
+[node name="dead_man" parent="." instance=ExtResource( 20 )]
+position = Vector2( 11, 82 )
+trainer = ExtResource( 4 )
+passive = true
+
+[node name="trigger" type="CollisionShape2D" parent="dead_man"]
+position = Vector2( 2, 54 )
+shape = SubResource( 48 )
+
+[node name="rude_man" parent="." instance=ExtResource( 20 )]
+position = Vector2( 40, 35 )
+trainer = ExtResource( 17 )
+
+[node name="los2" type="CollisionShape2D" parent="rude_man"]
+shape = SubResource( 47 )
 
 [node name="transition" parent="." instance_placeholder="res://widgets/transition.tscn"]
 
@@ -208,6 +151,3 @@ color = Color( 0.113725, 0.368627, 0.482353, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="area_entered" from="cry_baby" to="cry_baby" method="_on_area_entered"]
-[connection signal="area_entered" from="spikey" to="spikey" method="_on_area_entered"]

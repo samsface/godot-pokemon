@@ -1,8 +1,35 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://trainer/trainer_model.gd" type="Script" id=1]
 [ext_resource path="res://pokemon/wizard_hat/wizard_hat.tres" type="Resource" id=2]
-[ext_resource path="res://trainer/red/red_trainer_graphic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://text_model.gd" type="Script" id=3]
+[ext_resource path="res://trainer/red/world_loose.gd" type="Script" id=4]
+[ext_resource path="res://trainer/red/red_battle_graphic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://trainer/red/world_graphic.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+text = "Hey! You can't talk to people like that!
+You wan't to fight me?
+But I'm just an old woman!"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+text = "I'm so sad."
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+text = "Oh look. Aren't you a cute pug.
+With a HATeMON on your little head.
+Look at me. Talking to a pug. 
+You don't understand anything I say, do  you?
+What? What was that?
+Amazing!  You speak English?
+Who taught you to talk? Was it my son?
+This is his funeral sadly.
+You didn't know him? But you thought he was a...
+... what!!!!!!!
+Hey! Stop saying hurtful things!"
 
 [resource]
 script = ExtResource( 1 )
@@ -10,6 +37,9 @@ name = "Cry Baby"
 pokemon = [ ExtResource( 2 ) ]
 items = [  ]
 is_player = false
-begin_speach = [ "HEY! You can't talk to people like that!", "What? You want to fight me?", "... but I'm just an old woman!" ]
-loose_speach = [ "Please stop...", "Please stop ruining my son's funeral." ]
+world_encounter = SubResource( 1 )
+battle_begin = SubResource( 2 )
+battle_loose = SubResource( 3 )
+world_loose = ExtResource( 4 )
 battle_graphic = ExtResource( 5 )
+world_graphic = ExtResource( 7 )

@@ -15,12 +15,35 @@ func battle_transition_() -> Node:
 	transition.start()
 	return transition
 
+func play_script_(parent, script):
+	var s
+	if script is Script:
+		s = script.new()
+	elif script is TextModel:
+		s = GenericEncounter.new()
+		s.text = script
+
+	s.player = $player
+	s.info_box = info_box_
+	s.tween = tween_
+	parent.add_child(s)
+	return s
+
 func _on_encounter(trainer) -> void:
-	if trainer.name == "cry_baby":
-		_on_encounter_cry_baby(trainer)
-	elif trainer.name == "spikey":
-		_on_encounter_spikey(trainer)
-		
+	yield(play_script_(trainer, trainer.trainer.world_encounter), "done")
+
+	$music.play()
+	yield(battle_transition_(), "done")
+
+	var battle = preload("res://battle/battle.tscn").instance()
+	battle.enemy = trainer.trainer
+	$c.add_child(battle)
+	yield(battle, "done")
+	$music.stop()
+	battle.queue_free()
+	
+	yield(play_script_(trainer, trainer.trainer.world_loose), "done")
+
 func _on_encounter_cry_baby(trainer) -> void:
 	$player.pause_controls = true
 	
@@ -32,21 +55,20 @@ func _on_encounter_cry_baby(trainer) -> void:
 	yield(tween_.block(), "done")
 	trainer.get_node("spot").visible = false
 	info_box_.visible = true
-	yield(info_box_.set_text_for_confirm("This is a funeral little dog."), "done")
-	tween_.wait(0.1)
-	yield(info_box_.set_text_for_confirm("A sad time to reflect."), "done")
-	tween_.wait(0.1)
-	yield(info_box_.set_text_for_confirm("Oh wow little dog? You can speak English?"), "done")
-	tween_.wait(0.1)
-	yield(info_box_.set_text_for_confirm("Who taught you?"), "done")
-	tween_.wait(0.1)
-	yield(info_box_.set_text_for_confirm("Now don't be rude; I was just asking..."), "done")
-	tween_.wait(0.1)
-	yield(info_box_.set_text_for_confirm("What?? How dare you??"), "done")
-	tween_.wait(0.1)
-	yield(info_box_.set_text_for_confirm("Please leave! This is a funeral!"), "done")
-	tween_.wait(0.1)
 	
+	yield(info_box_.set_text_for_confirm("Aww, someone put a HATeMON on your head."), "done")
+	yield(info_box_.set_text_for_confirm("Be careful little pug..."), "done")
+	yield(info_box_.set_text_for_confirm("...while HATeMON are our friends..."), "done")
+	yield(info_box_.set_text_for_confirm("...they can be dangerous if put to bad use."), "done")
+	yield(info_box_.set_text_for_confirm("Look at me... talking to a dog."), "done")
+	yield(info_box_.set_text_for_confirm("I guess this funeral has me going crazy in greif."), "done")
+	yield(info_box_.set_text_for_confirm("Wait?? What did you just say??"), "done")
+	yield(info_box_.set_text_for_confirm("You can speak English little dog?"), "done")
+	yield(info_box_.set_text_for_confirm("Amazing! Who taught you?"), "done")
+	yield(info_box_.set_text_for_confirm("Now don't be rude; I was just asking..."), "done")
+	yield(info_box_.set_text_for_confirm("What?? How dare you??"), "done")
+	yield(info_box_.set_text_for_confirm("Please leave! This is a funeral!"), "done")
+
 	yield(battle_transition_(), "done")
 	$music.play()
 
@@ -57,23 +79,7 @@ func _on_encounter_cry_baby(trainer) -> void:
 	yield(battle, "done")
 	$music.stop()
 	battle.queue_free()
-	yield(info_box_.set_text_for_confirm("No! Don't steal my Wizard Hat!"), "done")
-	yield(info_box_.set_text_for_confirm("I can't loose my son AND my hat!"), "done")
-	yield(info_box_.set_text_for_confirm("... please... *sobs."), "done")
-	yield(info_box_.set_text_for_confirm("... please... *sobs."), "done")
-	yield(info_box_.set_text_for_confirm("... please don't take my Wizard Hat..."), "done")
-	$info_box.visible = false
-	yield(tween_.wait(5.0), "done")
-	$info_box.visible = true
-	
-	$success.play()
-	trainer.get_node("hat").visible = false
-	yield(info_box_.set_text_for_confirm("You took the Wizard Hat!"), "done")
 
-	trainer.monitoring = false
-	$player.pause_controls = false
-	$info_box.clear_text()
-	$info_box.visible = false
 	
 func _on_encounter_spikey(trainer) -> void:
 	$player.pause_controls = true

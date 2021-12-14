@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://trainer/game.gd"
+}, {
+"base": "Game",
+"class": "GenericEncounter",
+"language": "GDScript",
+"path": "res://trainer/generic_encounter.gd"
+}, {
 "base": "Resource",
 "class": "ItemModel",
 "language": "GDScript",
@@ -34,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://pokemon/pokemon_model.gd"
 }, {
+"base": "Resource",
+"class": "TextModel",
+"language": "GDScript",
+"path": "res://text_model.gd"
+}, {
 "base": "Node2D",
 "class": "TrainerGraphic",
 "language": "GDScript",
@@ -50,11 +65,14 @@ _global_script_classes=[ {
 "path": "res://widgets/tween_ex.gd"
 } ]
 _global_script_class_icons={
+"Game": "",
+"GenericEncounter": "",
 "ItemModel": "",
 "Menu": "",
 "MoveGraphic": "",
 "MoveModel": "",
 "PokemonModel": "",
+"TextModel": "",
 "TrainerGraphic": "",
 "TrainerModel": "",
 "TweenEx": ""
@@ -62,7 +80,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="jam"
+config/name="HATeMON - A Pug's Tail"
 run/main_scene="res://world.tscn"
 config/icon="res://icon.png"
 

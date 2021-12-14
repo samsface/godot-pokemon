@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crown0003.png-94bcadba1fbcfcaee29a2594325c18a5.stex"
+path="res://.import/skull0000.png-efe14e6fae1cbd003da14a819dfb1e0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://trainer/king/crown0003.png"
-dest_files=[ "res://.import/crown0003.png-94bcadba1fbcfcaee29a2594325c18a5.stex" ]
+source_file="res://trainer/dead_man/skull0000.png"
+dest_files=[ "res://.import/skull0000.png-efe14e6fae1cbd003da14a819dfb1e0e.stex" ]
 
 [params]
 
