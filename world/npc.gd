@@ -1,6 +1,7 @@
 extends Area2D
 
 signal encounter
+signal beat
 
 export(Resource) var trainer setget set_trainer
 export(bool) var passive
