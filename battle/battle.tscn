@@ -17,6 +17,7 @@
 [node name="battle" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 3 )
 color = Color( 0.113725, 0.368627, 0.482353, 1 )
 script = ExtResource( 8 )
@@ -35,7 +36,7 @@ script = ExtResource( 2 )
 [node name="pokemon" type="Position2D" parent="enemy"]
 position = Vector2( 126, 29 )
 
-[node name="trainer" parent="enemy" instance_placeholder="res://trainer/red/red_trainer_graphic.tscn"]
+[node name="trainer" parent="enemy" instance_placeholder="res://trainer/red/red_battle_graphic.tscn"]
 
 [node name="stats" parent="enemy" instance=ExtResource( 13 )]
 visible = false

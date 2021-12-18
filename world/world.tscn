@@ -106,7 +106,6 @@ trainer = ExtResource( 7 )
 
 [node name="Pug" type="AnimatedSprite" parent="player"]
 frames = SubResource( 45 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]

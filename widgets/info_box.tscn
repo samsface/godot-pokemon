@@ -19,6 +19,7 @@ margin_top = 96.0
 margin_right = 160.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 48 )
+mouse_filter = 2
 size_flags_vertical = 10
 theme = ExtResource( 6 )
 custom_styles/panel = SubResource( 1 )
@@ -49,6 +50,7 @@ margin_top = -14.005
 margin_right = -0.737366
 margin_bottom = -5.005
 rect_rotation = 90.0
+mouse_filter = 2
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -57,6 +59,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_constants/margin_right = 6
 custom_constants/margin_top = 6
 custom_constants/margin_left = 6
@@ -70,6 +73,7 @@ margin_left = 6.0
 margin_top = 6.0
 margin_right = 152.0
 margin_bottom = 40.0
+mouse_filter = 2
 bbcode_enabled = true
 custom_effects = [ null ]
 
