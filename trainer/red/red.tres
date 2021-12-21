@@ -33,6 +33,7 @@ Hey! Stop saying hurtful things about my son!"
 
 [resource]
 script = ExtResource( 1 )
+id = "cry_baby"
 name = "Cry Baby"
 pokemon = [ ExtResource( 2 ) ]
 items = [  ]
@@ -41,5 +42,7 @@ world_encounter = SubResource( 1 )
 battle_begin = SubResource( 2 )
 battle_loose = SubResource( 3 )
 world_loose = ExtResource( 4 )
+beat_flag_mutations = [  ]
+loose_flag_mutations = [  ]
 battle_graphic = ExtResource( 5 )
 world_graphic = ExtResource( 7 )

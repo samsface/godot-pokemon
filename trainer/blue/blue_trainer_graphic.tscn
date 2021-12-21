@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://trainer/trainer_graphic.gd" type="Script" id=1]
-[ext_resource path="res://pokemon/horns/back.png" type="Texture" id=3]
+[ext_resource path="res://trainer/blue/helmetViking0005.png" type="Texture" id=2]
 
 [sub_resource type="StreamTexture" id=1]
 
@@ -17,9 +17,8 @@ texture = SubResource( 1 )
 
 [node name="back" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( 31, 82 )
+position = Vector2( 39, 76 )
 rotation = -0.15708
-scale = Vector2( 0.696429, 0.696429 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="enter" type="AudioStreamPlayer" parent="."]

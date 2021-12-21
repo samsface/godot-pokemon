@@ -3,6 +3,7 @@ extends PanelContainer
 onready var info_text_ = find_node("info_text")
 onready var tween_ = find_node("tween")
 onready var arrow_ = find_node("arrow")
+onready var success = find_node("success")
 
 func set_text(text, post_delay:float = 0.7) -> Tween:
 	info_text_.percent_visible = 0

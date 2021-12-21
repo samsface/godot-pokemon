@@ -6,8 +6,11 @@
 
 [resource]
 script = ExtResource( 1 )
+id = ""
 name = "Blue"
 pokemon = [ ExtResource( 2 ) ]
 items = [  ]
 is_player = true
+beat_flag_mutations = [  ]
+loose_flag_mutations = [  ]
 battle_graphic = ExtResource( 7 )

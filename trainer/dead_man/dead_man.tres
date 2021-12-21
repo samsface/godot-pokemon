@@ -21,6 +21,7 @@ text = "God is going to be so upset with me."
 
 [resource]
 script = ExtResource( 1 )
+id = "dead_man"
 name = "Annoying Dead Man"
 pokemon = [ ExtResource( 3 ), ExtResource( 8 ) ]
 items = [  ]
@@ -29,5 +30,7 @@ world_encounter = ExtResource( 5 )
 battle_begin = SubResource( 1 )
 battle_loose = SubResource( 2 )
 world_loose = ExtResource( 7 )
+beat_flag_mutations = [  ]
+loose_flag_mutations = [  ]
 battle_graphic = ExtResource( 2 )
 world_graphic = ExtResource( 4 )

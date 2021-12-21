@@ -23,6 +23,7 @@ I think you should leave."
 
 [resource]
 script = ExtResource( 1 )
+id = ""
 name = "Rude Man"
 pokemon = [ ExtResource( 2 ) ]
 items = [  ]
@@ -31,5 +32,7 @@ world_encounter = SubResource( 1 )
 battle_begin = SubResource( 2 )
 battle_loose = SubResource( 3 )
 world_loose = ExtResource( 6 )
+beat_flag_mutations = [  ]
+loose_flag_mutations = [  ]
 battle_graphic = ExtResource( 3 )
 world_graphic = ExtResource( 4 )

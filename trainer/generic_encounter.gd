@@ -22,4 +22,4 @@ func _ready() -> void:
 			continue
 		yield(info_box.set_text_for_confirm(l), "done")
 
-	done_()
+	done_() 

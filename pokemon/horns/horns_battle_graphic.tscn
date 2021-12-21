@@ -19,7 +19,6 @@ texture = ExtResource( 2 )
 [node name="back" type="Sprite" parent="."]
 use_parent_material = true
 position = Vector2( 4, 0 )
-scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 1 )
 
 [node name="faint" type="AudioStreamPlayer" parent="."]

@@ -1,6 +1,7 @@
 extends Resource
 class_name TrainerModel
 
+export(String) var id
 export(String) var name
 export(Array, Resource) var pokemon
 export(Array, Resource) var items
@@ -9,6 +10,8 @@ export(Resource) var world_encounter
 export(Resource) var battle_begin
 export(Resource) var battle_loose
 export(Resource) var world_loose
+export(Array, Resource)    var beat_flag_mutations
+export(Array, Resource)    var loose_flag_mutations
 export(PackedScene) var battle_graphic
 export(PackedScene) var world_graphic
 

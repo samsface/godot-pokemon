@@ -10,7 +10,7 @@ func _ready():
 	yield(tween.wait(5.0), "done")
 	info_box.visible = true
 	
-	#$success.play()
+	info_box.success.play()
 
 	yield(info_box.set_text_for_confirm("You took the Wizard Hat!"), "done")
 	player.trainer.pokemon.push_back(trainer.trainer.pokemon[0])

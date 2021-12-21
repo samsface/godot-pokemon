@@ -4,11 +4,10 @@
 [ext_resource path="res://pokemon/horns/learn.wav" type="AudioStream" id=2]
 [ext_resource path="res://world/npc.gd" type="Script" id=5]
 
-[node name="npc" type="Area2D" groups=["trainer"]]
+[node name="npc" type="Node2D" groups=["trainer"]]
 script = ExtResource( 5 )
 
 [node name="sprite" parent="." instance_placeholder="res://trainer/red/world_graphic.tscn"]
-frame = 0
 
 [node name="spot" type="Label" parent="."]
 visible = false
@@ -27,5 +26,3 @@ __meta__ = {
 stream = ExtResource( 2 )
 pitch_scale = 0.8
 bus = "fx"
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

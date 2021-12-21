@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "FlagMutation",
+"language": "GDScript",
+"path": "res://flag_mutation.gd"
+}, {
 "base": "Node",
 "class": "Game",
 "language": "GDScript",
@@ -59,12 +64,18 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://trainer/trainer_model.gd"
 }, {
+"base": "Area2D",
+"class": "Trigger",
+"language": "GDScript",
+"path": "res://world/trigger.gd"
+}, {
 "base": "Tween",
 "class": "TweenEx",
 "language": "GDScript",
 "path": "res://widgets/tween_ex.gd"
 } ]
 _global_script_class_icons={
+"FlagMutation": "",
 "Game": "",
 "GenericEncounter": "",
 "ItemModel": "",
@@ -75,6 +86,7 @@ _global_script_class_icons={
 "TextModel": "",
 "TrainerGraphic": "",
 "TrainerModel": "",
+"Trigger": "",
 "TweenEx": ""
 }
 
@@ -88,6 +100,7 @@ config/icon="res://icon.png"
 
 Cam="*res://camera.tscn"
 Pause="*res://pause.tscn"
+FlagDB="*res://flag_db.gd"
 
 [display]
 
