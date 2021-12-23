@@ -46,6 +46,7 @@ func _process(delta:float):
 
 	if moving_to_ == null and not moves_.empty():
 		ray_.rotation = moves_.front().angle()
+		$ray2.rotation  = moves_.front().angle() + PI * 1.5
 		ray_.force_raycast_update()
 		if ray_.is_colliding():
 			$sprite.animation = animation_[moves_.front()]

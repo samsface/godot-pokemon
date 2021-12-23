@@ -45,11 +45,3 @@ func _on_encounter(trainer) -> void:
 	
 	trainer.emit_signal("beat")
 	FlagDB.flags[trainer.trainer.id + "_beat"] = true
-
-func _on_exit_trigger():
-	$player.pause_controls = true
-	info_box_.visible = true
-	yield(info_box_.set_text_for_confirm("You exit the church..."), "done");
-	yield(info_box_.set_text_for_confirm("...annoyed nobody pet you."), "done");
-	yield($tween.wait(0.2), "done")
-	get_tree().change_scene("res://end.tscn")

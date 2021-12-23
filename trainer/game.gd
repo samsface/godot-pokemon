@@ -12,7 +12,7 @@ func _ready() -> void:
 	level = find_parent("level")
 	info_box = level.get_node("info_box")
 	tween = level.get_node("tween")
-	player = level.get_node("player")
+	player = level.find_node("player")
 
 	for node in get_children():
 		if node is Trigger:

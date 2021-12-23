@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "HORN"
+name = "HORN HAT"
 level = 1
 hp = 15
 max_hp = 15

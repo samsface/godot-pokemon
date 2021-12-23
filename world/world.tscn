@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://widgets/tween_ex.gd" type="Script" id=1]
 [ext_resource path="res://widgets/info_box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://music/mars.mp3" type="AudioStream" id=3]
 [ext_resource path="res://trainer/blue/pug2.png" type="Texture" id=4]
 [ext_resource path="res://world/world.gd" type="Script" id=5]
+[ext_resource path="res://world/exit.gd" type="Script" id=6]
 [ext_resource path="res://trainer/blue/blue.tres" type="Resource" id=7]
 [ext_resource path="res://trainer/rude_man/rude_man.tres" type="Resource" id=8]
 [ext_resource path="res://trainer/red/red.tres" type="Resource" id=9]
@@ -13,7 +14,6 @@
 [ext_resource path="res://world/player.gd" type="Script" id=12]
 [ext_resource path="res://trainer/dead_man/dead_man.tres" type="Resource" id=13]
 [ext_resource path="res://world/npc.tscn" type="PackedScene" id=14]
-[ext_resource path="res://world/interactable.tscn" type="PackedScene" id=15]
 [ext_resource path="res://trainer/blue/north_0.png" type="Texture" id=16]
 [ext_resource path="res://trainer/blue/east_1.png" type="Texture" id=17]
 [ext_resource path="res://trainer/blue/east_0.png" type="Texture" id=18]
@@ -23,6 +23,30 @@
 [ext_resource path="res://world/trigger.gd" type="Script" id=22]
 [ext_resource path="res://world/text.gd" type="Script" id=23]
 [ext_resource path="res://world/chew_dead_man.gd" type="Script" id=24]
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 52.5, 26.5 )
+
+[sub_resource type="RayShape2D" id=47]
+length = 53.0
+
+[sub_resource type="CircleShape2D" id=50]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id=54]
+extents = Vector2( 27.5, 10 )
+
+[sub_resource type="RectangleShape2D" id=51]
+extents = Vector2( 6, 11 )
+
+[sub_resource type="RectangleShape2D" id=52]
+extents = Vector2( 5.5, 24 )
+
+[sub_resource type="CircleShape2D" id=48]
+radius = 16.0
+
+[sub_resource type="RayShape2D" id=53]
+length = 12.0
 
 [sub_resource type="SpriteFrames" id=45]
 animations = [ {
@@ -48,21 +72,6 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=21]
-
-[sub_resource type="RectangleShape2D" id=46]
-extents = Vector2( 52.5, 26.5 )
-
-[sub_resource type="RayShape2D" id=47]
-length = 53.0
-
-[sub_resource type="CircleShape2D" id=50]
-radius = 16.0
-
-[sub_resource type="CircleShape2D" id=48]
-radius = 16.0
-
-[sub_resource type="CircleShape2D" id=49]
-radius = 16.0
 
 [node name="level" type="Node2D"]
 script = ExtResource( 5 )
@@ -120,138 +129,200 @@ position = Vector2( 80, 72 )
 scale = Vector2( 0.129863, 0.129968 )
 texture = ExtResource( 11 )
 
-[node name="player" type="Area2D" parent="."]
-position = Vector2( 149, 80 )
-collision_mask = 0
-script = ExtResource( 12 )
-trainer = ExtResource( 7 )
+[node name="YSort" type="YSort" parent="."]
 
-[node name="sprite" type="AnimatedSprite" parent="player"]
-frames = SubResource( 45 )
-animation = "west"
-playing = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-shape = SubResource( 21 )
-
-[node name="ray" type="RayCast2D" parent="player"]
-cast_to = Vector2( 16, 0 )
-
-[node name="tween" type="Tween" parent="player"]
-repeat = true
-playback/repeat = true
-
-[node name="chairs" type="StaticBody2D" parent="."]
+[node name="chair" type="StaticBody2D" parent="YSort"]
 position = Vector2( 105, 56 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( 2.5, -13.5 )
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( 108, 31 )
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( -135, -3 )
 rotation = 1.5708
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( -134, 102 )
 rotation = 1.5708
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( -134, 102 )
 rotation = 1.5708
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( -52, 114 )
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( -94, -67 )
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="chairs"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/chair"]
 position = Vector2( 2.5, 61.5 )
 shape = SubResource( 46 )
 
-[node name="cry_baby" parent="." instance=ExtResource( 14 )]
-position = Vector2( 62, 80 )
-trainer = ExtResource( 9 )
-
-[node name="trigger" type="Area2D" parent="cry_baby"]
-collision_layer = 0
-script = ExtResource( 22 )
-
-[node name="los" type="CollisionShape2D" parent="cry_baby/trigger"]
-rotation = -1.5708
-shape = SubResource( 47 )
-
-[node name="rude_man" parent="." instance=ExtResource( 14 )]
+[node name="rude_man" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 40, 35 )
 trainer = ExtResource( 8 )
 
-[node name="Trigger" type="Area2D" parent="rude_man"]
+[node name="Trigger" type="Area2D" parent="YSort/rude_man"]
+collision_layer = 0
 script = ExtResource( 22 )
 
-[node name="los" type="CollisionShape2D" parent="rude_man/Trigger"]
+[node name="los" type="CollisionShape2D" parent="YSort/rude_man/Trigger"]
 shape = SubResource( 47 )
 
-[node name="chew_dead_man" type="Node2D" parent="."]
+[node name="chew_dead_man" type="Node2D" parent="YSort"]
 position = Vector2( 11, 82 )
 script = ExtResource( 24 )
 
-[node name="Trigger" type="Area2D" parent="chew_dead_man"]
+[node name="Trigger" type="Area2D" parent="YSort/chew_dead_man"]
 script = ExtResource( 22 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chew_dead_man/Trigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/chew_dead_man/Trigger"]
 shape = SubResource( 50 )
 
-[node name="think_about_leaving" type="Node2D" parent="."]
+[node name="think_about_leaving" type="Node2D" parent="YSort"]
 position = Vector2( 130, 81 )
 script = ExtResource( 23 )
 text = "You think about leaving.
 But feel like as the life of the party...
 you have a responsibility to stay."
 
-[node name="Trigger" type="Area2D" parent="think_about_leaving"]
+[node name="Trigger" type="Area2D" parent="YSort/think_about_leaving"]
 collision_layer = 0
 script = ExtResource( 22 )
 flag = [ "flags.has(\"cry_baby_beat\") and not flags.has(\"dead_man_beat\")" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="think_about_leaving/Trigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/think_about_leaving/Trigger"]
 position = Vector2( 20, -1 )
 shape = SubResource( 50 )
 
-[node name="dead_man" parent="." instance=ExtResource( 14 )]
+[node name="move_north" type="Node2D" parent="YSort"]
+position = Vector2( 6, 50 )
+script = ExtResource( 23 )
+text = "You move north.
+Ignoring the hint that said move south.
+Nobody tells you what to do."
+
+[node name="Trigger" type="Area2D" parent="YSort/move_north"]
+collision_layer = 0
+script = ExtResource( 22 )
+flag = [ "flags.has(\"dead_man_chewed\") and not flags.has(\"dead_man_beat\")" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/move_north/Trigger"]
+position = Vector2( 21.5, -1 )
+shape = SubResource( 54 )
+
+[node name="paintings" type="Node2D" parent="YSort"]
+position = Vector2( 35, 6 )
+script = ExtResource( 23 )
+text = "You look at the painting.
+You see a sad man with nails in his hands.
+You think he must be a bad carpenter.
+Also you feel the brushwork is naive.
+"
+
+[node name="Trigger" type="Area2D" parent="YSort/paintings"]
+collision_layer = 0
+script = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/paintings/Trigger"]
+position = Vector2( -17, 0 )
+shape = SubResource( 51 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/paintings/Trigger"]
+position = Vector2( 19, 0 )
+shape = SubResource( 51 )
+
+[node name="front_row" type="Node2D" parent="YSort"]
+position = Vector2( 60, 50 )
+script = ExtResource( 23 )
+text = "You look at the front row of seat.
+You think about sitting.
+But remember the front row is for nerds."
+
+[node name="Trigger" type="Area2D" parent="YSort/front_row"]
+collision_layer = 0
+script = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/front_row/Trigger"]
+position = Vector2( 4.5, -5 )
+shape = SubResource( 52 )
+
+[node name="exit" type="Node2D" parent="YSort"]
+position = Vector2( 140, 82 )
+script = ExtResource( 6 )
+
+[node name="Trigger" type="Area2D" parent="YSort/exit"]
+collision_layer = 0
+script = ExtResource( 22 )
+flag = [ "flags.has(\"dead_man_beat\")" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/exit/Trigger"]
+position = Vector2( 20, -1 )
+shape = SubResource( 50 )
+
+[node name="dead_man" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 11, 82 )
 trainer = ExtResource( 13 )
 
-[node name="trigger" type="Area2D" parent="dead_man"]
+[node name="trigger" type="Area2D" parent="YSort/dead_man"]
 script = ExtResource( 22 )
-flag = [ "flags.dead_man_chewed" ]
+flag = [ "flags.has(\"dead_man_chewed\")" ]
 
-[node name="area" type="CollisionShape2D" parent="dead_man/trigger"]
+[node name="area" type="CollisionShape2D" parent="YSort/dead_man/trigger"]
 position = Vector2( 2, 54 )
 shape = SubResource( 48 )
 
-[node name="exit" parent="." instance=ExtResource( 15 )]
-position = Vector2( 170, 73 )
-text = "You exit the church...
-...annoyed nobody pet you."
-flag = [ "flags.dead_man_beat" ]
+[node name="cry_baby" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 62, 80 )
+trainer = ExtResource( 9 )
 
-[node name="trigger" type="CollisionShape2D" parent="exit"]
-position = Vector2( 0, 7 )
-shape = SubResource( 49 )
+[node name="trigger" type="Area2D" parent="YSort/cry_baby"]
+collision_layer = 0
+script = ExtResource( 22 )
+
+[node name="los" type="CollisionShape2D" parent="YSort/cry_baby/trigger"]
+rotation = -1.5708
+shape = SubResource( 47 )
+
+[node name="player" type="Area2D" parent="YSort"]
+position = Vector2( 149, 80 )
+collision_mask = 0
+script = ExtResource( 12 )
+trainer = ExtResource( 7 )
+
+[node name="ray2" type="CollisionShape2D" parent="YSort/player"]
+shape = SubResource( 53 )
+
+[node name="sprite" type="AnimatedSprite" parent="YSort/player"]
+frames = SubResource( 45 )
+animation = "west"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/player"]
+shape = SubResource( 21 )
+
+[node name="ray" type="RayCast2D" parent="YSort/player"]
+enabled = true
+cast_to = Vector2( 16, 0 )
+collide_with_areas = true
+
+[node name="tween" type="Tween" parent="YSort/player"]
+repeat = true
+playback/repeat = true
 
 [node name="info_box" parent="." instance=ExtResource( 2 )]
 visible = false
 
 [node name="transition" parent="." instance_placeholder="res://widgets/transition.tscn"]
-
-[connection signal="trigger" from="exit" to="." method="_on_exit_trigger"]

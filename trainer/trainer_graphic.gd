@@ -16,12 +16,12 @@ func begin(tween:TweenEx) -> void:
 	tween.step_property($back, "modulate:a", 1.0, 0.0, 1.0)
 	tween.step_property($back, "modulate:a", 0.0, 1.0, 1.2)
 	tween.start()
-	
+
 func exit(tween:TweenEx) -> void:
 	tween.interpolate_property($front, "position:x", null, 200, 0.2)
-	tween.interpolate_property($back,  "position:x", null, -40, 0.2)
+	tween.interpolate_property($back,  "position:x", null, -50, 0.2)
 	tween.start()
-	
+
 func enter(tween:TweenEx) -> void:
 	tween.interpolate_property($front, "position:x", null, front_position_.x, 0.2)
 	tween.interpolate_property($back,  "position:x", null, back_position_.x, 0.2)

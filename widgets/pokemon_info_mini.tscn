@@ -24,7 +24,6 @@ margin_top = -5.0
 margin_right = 245.094
 margin_bottom = 21.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "5"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -39,7 +38,6 @@ margin_top = -4.0
 margin_right = 160.0
 margin_bottom = 22.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BULBASAUR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,7 +52,6 @@ margin_top = -4.0
 margin_right = 128.0
 margin_bottom = 22.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "20/ 20"
 __meta__ = {
 "_edit_use_anchors_": false

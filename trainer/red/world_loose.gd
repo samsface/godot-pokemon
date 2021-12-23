@@ -3,6 +3,7 @@ extends Game
 func _ready():
 	var trainer = get_parent()
 	yield(info_box.set_text_for_confirm("No! Don't steal my Wizard Hat!"), "done")
+	yield(info_box.set_text_for_confirm("It's all I have left of my son!"), "done")
 	yield(info_box.set_text_for_confirm("... please... *sobs"), "done")
 	yield(info_box.set_text_for_confirm("... please... *sobs"), "done")
 	yield(info_box.set_text_for_confirm("... please don't take my Wizard Hat."), "done")
