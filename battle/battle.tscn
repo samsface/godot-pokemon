@@ -235,10 +235,8 @@ __meta__ = {
 }
 
 [node name="m" type="NinePatchRect" parent="items"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 129.0
-margin_bottom = 86.0
+margin_right = 130.0
+margin_bottom = 87.0
 texture = ExtResource( 11 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -259,8 +257,8 @@ __meta__ = {
 [node name="col_1" type="VBoxContainer" parent="items/m/m"]
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 122.0
-margin_bottom = 79.0
+margin_right = 124.0
+margin_bottom = 81.0
 
 [node name="pokemon_list" parent="." instance=ExtResource( 18 )]
 visible = false

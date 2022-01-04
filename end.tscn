@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://widgets/theme.tres" type="Theme" id=1]
+[ext_resource path="res://trainer/red/char02_0000.png" type="Texture" id=2]
 
 [node name="Node2D" type="MarginContainer"]
 anchor_right = 1.0
@@ -19,12 +20,17 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 margin_left = 26.0
-margin_top = 65.0
-margin_right = 134.0
-margin_bottom = 78.0
+margin_top = 57.0
+margin_right = 133.0
+margin_bottom = 86.0
 size_flags_horizontal = 4
 theme = ExtResource( 1 )
-text = "Thanks for playing"
+text = "Thanks for playing
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Char020000" type="Sprite" parent="."]
+position = Vector2( 75, 108 )
+texture = ExtResource( 2 )

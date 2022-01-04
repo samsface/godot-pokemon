@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://trainer/trainer_graphic.gd" type="Script" id=1]
 [ext_resource path="res://trainer/red/char02_0000.png" type="Texture" id=2]
 [ext_resource path="res://trainer/sounds/battle_begin.wav" type="AudioStream" id=3]
-[ext_resource path="res://pokemon/wizard_hat/front.png" type="Texture" id=4]
 
 [node name="blue_trainer_graphic" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,12 +11,6 @@ script = ExtResource( 1 )
 use_parent_material = true
 position = Vector2( 132, 39 )
 texture = ExtResource( 2 )
-
-[node name="Front" type="Sprite" parent="front"]
-use_parent_material = true
-position = Vector2( 0, -23 )
-scale = Vector2( 0.522905, 0.522905 )
-texture = ExtResource( 4 )
 
 [node name="back" type="Sprite" parent="."]
 visible = false
