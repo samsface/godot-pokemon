@@ -3,6 +3,8 @@ extends Node2D
 export(Resource) var trainer
 
 const tile_size = 16.0
+const speed := 100.0
+
 
 const animation_ = {
 	Vector2.ZERO: "idle",
@@ -56,7 +58,7 @@ func _process(delta:float):
 
 	if not moves_.empty():
 		$sprite.animation = animation_[moves_.front()]
-		global_position = global_position.move_toward(moving_to_, delta * 20.0)
+		global_position = global_position.move_toward(moving_to_, delta * speed)
 		if global_position.distance_to(moving_to_) <= 0.1:
 			global_position = moving_to_
 			moving_to_ = null
